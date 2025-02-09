@@ -1,0 +1,183 @@
+---
+// JSON
+const navJson = [
+  {
+    href: '/#concept',
+    label: 'Concept',
+    ariaLabel: 'コンセプト'
+  },
+  {
+    href: '/#about',
+    label: 'About',
+    ariaLabel: '当店について'
+  },
+  {
+    href: '/menu',
+    label: 'Menu',
+    ariaLabel: 'メニュー'
+  },
+  {
+    href: '/blog/1',
+    label: 'Blog',
+    ariaLabel: 'ブログ'
+  },
+  {
+    href: '/#access',
+    label: 'Access',
+    ariaLabel: 'アクセス'
+  },
+  {
+    href: '/#faq',
+    label: 'F.A.Q',
+    ariaLabel: 'よくあるご質問'
+  }
+]
+---
+
+<!-- navigation -->
+<nav class="c-header-nav c-g-nav" id="js-nav">
+  <div class="c-g-nav-inner">
+    <ul class="c-g-nav-list">
+      {navJson.map((navJson_item) =>
+        <li class="c-g-nav-item u-uppercase">
+          <a href={navJson_item.href} aria-label={navJson_item.ariaLabel}>{navJson_item.label}</a>
+        </li>
+      )}
+    </ul>
+    <div class="c-g-nav-privacy">
+      <a href="/privacy-policy" aria-label="プライバシーポリシー">privacy policy</a>
+    </div><!-- /.c-g-nav-privacy -->
+  </div><!-- /.c-g-nav-inner -->
+</nav>
+
+<style lang="scss">
+  @use '../styles/breakpoints' as *;
+
+  // .c-header-nav
+  .c-header-nav {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    padding-top: 68px;
+    background-color: transparent;
+    opacity: 0;
+    transition: background-color 1s, opacity 1s;
+
+    &.is-active {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: var(--color-camel);
+      opacity: 1;
+    }
+  }
+
+  @include mq(lg) {
+    .c-header-nav {
+      position: static;
+      justify-content: space-between;
+      width: auto;
+      height: auto;
+      padding-top: 0;
+      opacity: initial;
+    }
+  }
+
+  // .c-g-nav
+  .c-g-nav {
+    text-align: center;
+    color: var(--color-base);
+  }
+
+  .c-g-nav-inner {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .c-g-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px;
+  }
+
+  .c-g-nav-item {
+    position: relative;
+    width: 100%;
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 10px 60px;
+      font-size: clamp(16px, calc(16 var(--vw-sp)), 20px);
+    }
+  }
+
+  .c-g-nav-privacy {
+    padding: 20px;
+    border-top: 1px solid var(--color-base);
+    margin-top: 20px;
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 10px 60px;
+      font-size: clamp(12px, calc(12 var(--vw-sp)), 16px);
+    }
+  }
+
+  @include mq(lg) {
+    .c-g-nav {
+      color: var(--color-main);
+    }
+
+    .c-g-nav-inner {
+      padding: 0;
+    }
+
+    .c-g-nav-list {
+      flex-direction: row;
+      gap: min(17px, calc(17 var(--vw-pc)));
+      padding: 0;
+      margin-top: 6px;
+    }
+
+    .c-g-nav-item {
+      width: fit-content;
+
+      a {
+        position: relative;
+        padding: 8px clamp(8px, calc(12 var(--vw-pc)), 12px);
+        font-size: clamp(14px, calc(16 var(--vw-pc)), 16px);
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 4px;
+          left: clamp(8px, calc(12 var(--vw-pc)), 12px);
+          width: 0;
+          height: 1px;
+          background-color: currentColor;
+          transition: width 0.3s;
+        }
+
+        &:hover::after {
+          width: calc(100% - clamp(8px, calc(12 var(--vw-pc)), 12px) * 2);
+        }
+      }
+    }
+
+    .c-g-nav-privacy {
+      display: none;
+    }
+  }
+</style>

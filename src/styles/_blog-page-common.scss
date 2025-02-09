@@ -1,0 +1,26 @@
+@use 'breakpoints' as *;
+
+/* -----------------------------------
+  pages
+----------------------------------- */
+
+/* pages > blog > [page].astro
+----------------------------------- */
+// 複数の[page].astroに共通のスタイル
+.blog-container {
+  padding-bottom: 76px;
+}
+
+.blog-pagination {
+  margin-top: 36px;
+}
+
+@include mq() {
+  .blog-container {
+    padding-bottom: 156px;
+  }
+
+  .blog-pagination {
+    margin-top: 76px;
+  }
+}

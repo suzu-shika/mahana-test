@@ -1,0 +1,54 @@
+---
+import BlogCard from './BlogCard.astro';
+import sanitizeHtml from 'sanitize-html';
+
+// Props を受け取る
+const { contents } = Astro.props;
+
+// 文字数制限関数
+function truncateText(text, length) {
+  if (!text) return "";
+  return text.length > length ? `${text.slice(0, length)}…` : text;
+}
+---
+<div class="blog-list">
+  {contents && contents.length > 0 ? (
+    contents.map((content) => (
+      <BlogCard
+        id={content.id}
+        title={content.title}
+        thumbnail={content.thumbnail.url}
+        thumbnailAlt={content.thumbnail_alt}
+        date={content.publishedAt}
+        category={content.category}
+        excerpt={truncateText(sanitizeHtml(content.main_text), 60)}
+      />
+    ))
+  ) : (
+    <p>記事がありません</p>
+  )}
+</div>
+
+<style lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+  .blog-list {
+    display: grid;
+    gap: 40px;
+    margin-top: 40px;
+  }
+
+  @include mq() {
+    .blog-list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: calc(20 / 768 * 100vw);
+      margin-top: 80px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .blog-list {
+      gap: min(80px, calc(80 var(--vw-pc)));
+    }
+  }
+</style>

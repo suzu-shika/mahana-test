@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HeadingTitle from '../../components/Title/HeadingTitle.astro';
+import BlogPickup from '../../components/Blog/BlogPickup.astro';
+import BlogCategoryList from '../../components/Blog/BlogCategoryList.astro';
+import BlogList from '../../components/Blog/BlogList.astro';
+import Pagination from '../../components/Pagination.astro';
+import { getBlogs } from "../../library/microcms";
+
+const { categoryName, page } = Astro.props;
+
+// ブログ記事の取得
+const responseBlog = await getBlogs({
+  filters: `category[contains]${categoryName}`,
+  fields: ["id", "title", "thumbnail", "thumbnail_alt", "publishedAt", "category", "main_text"],
+  limit: 6,
+  offset: (page.currentPage - 1) * 6,
+});
+---
+
+<Layout subTitle="BLOG"
+  ogType="website"
+  description="埼玉県所沢市のホームページ制作者 鈴木孝浩（すずしか）へのお問い合わせはこちらからどうぞ。相談は無料で承っております。"
+>
+  <main class="blog-main">
+    <div class="blog-heading">
+      <HeadingTitle
+        titleText="Blog"
+        ariaLabel="ブログ"
+        className="c-heading-title--camel"
+      />
+    </div>
+    <div class="blog-container l-container">
+      <BlogPickup />
+      <BlogCategoryList activeCategory={categoryName} />
+      <BlogList contents={responseBlog.contents} />
+      <div class="blog-pagination">
+        <Pagination currentPage={page.currentPage} lastPage={page.lastPage} category={categoryName} />
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+  .blog-container {
+    padding-bottom: 76px;
+  }
+
+  .blog-pagination {
+    margin-top: 36px;
+  }
+
+  @include mq() {
+    .blog-container {
+      padding-bottom: 156px;
+    }
+
+    .blog-pagination {
+      margin-top: 76px;
+    }
+  }
+</style>

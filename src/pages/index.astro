@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TopKV from '../components/Top/TopKV.astro';
+import TopConcept from '../components/Top/TopConcept.astro';
+import TopAbout from '../components/Top/TopAbout.astro';
+import TopMenu from '../components/Menu/TopMenu.astro';
+import TopBlog from '../components/Blog/TopBlog.astro';
+import TopAccess from '../components/Top/TopAccess.astro';
+import TopFAQ from '../components/Top/TopFAQ.astro';
+---
+
+<!-- top -->
+<Layout
+  subTitle="トップページ"
+  ogType="website"
+  description="埼玉県羽生市のプライベートサロン「mahana」では、薬剤師オーナーが腸律セラピー・アロマトリートメント・よもぎ蒸し・フェイシャルエステをご提供。腸から美しく整え、心と身体のバランスを整える癒しの時間をお届けします。"
+>
+  <!-- top-kv -->
+  <div class="top-kv">
+    <TopKV />
+  </div><!-- /.top-kv -->
+
+  <main>
+    <!-- top-concept -->
+    <section id="concept" class="top-concept">
+      <TopConcept />
+    </section><!-- /.top-concept -->
+
+    <!-- top-about -->
+    <section id="about" class="top-about">
+      <TopAbout />
+    </section><!-- /.top-about -->
+
+    <!-- top-menu -->
+    <section class="top-menu">
+      <TopMenu />
+    </section><!-- /.top-menu -->
+
+    <!-- top-blog -->
+    <section class="top-blog">
+      <TopBlog />
+    </section><!-- /.top-blog -->
+
+    <!-- top-access -->
+    <section id="access" class="top-access">
+      <TopAccess />
+    </section><!-- /.top-access -->
+
+    <!-- top-faq -->
+    <section id="faq" class="top-faq">
+      <TopFAQ />
+    </section><!-- /.top-faq -->
+  </main>
+</Layout>

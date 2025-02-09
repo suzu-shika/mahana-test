@@ -1,0 +1,55 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import HeadingTitle from '../../../../components/Title/HeadingTitle.astro';
+import BlogPickup from '../../../../components/Blog/BlogPickup.astro';
+import BlogCategoryList from '../../../../components/Blog/BlogCategoryList.astro';
+import BlogList from '../../../../components/Blog/BlogList.astro';
+import Pagination from '../../../../components/Pagination.astro';
+import type { GetStaticPathsOptions } from 'astro';
+
+// microCMS呼び出し
+import { getBlogs } from "../../../../library/microcms";
+
+const { page } = Astro.props;
+
+// ブログ記事の取得
+const responseBlog = await getBlogs({
+  filters: `category[contains]Column`,
+  fields: ["id", "title", "thumbnail", "thumbnail_alt", "publishedAt", "category", "main_text"],
+  limit: 9,
+  offset: (page.currentPage - 1) * 9,
+});
+
+// 動的ルートの生成
+export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
+  const blogs = await getBlogs({
+    fields: ["category"],
+    filters: `category[contains]Column`,
+    limit: 100,
+  });
+  return paginate(blogs.contents, { pageSize: 9 });
+};
+---
+
+<Layout subTitle="ブログ - コラム"
+  ogType="website"
+  description="腸律セラピー・フェイシャルエステ・アロマ・よもぎ蒸しの美容と健康に関するコラム。腸活やリラクゼーションの知識を深めて、心身のバランスを整えましょう。"
+>
+  <main class="blog-main">
+    <div class="blog-heading">
+      <HeadingTitle
+        titleText="Column"
+        ariaLabel="コラム"
+        className="c-heading-title--camel"
+      />
+    </div>
+    <div class="blog-container l-container">
+      <BlogPickup />
+      <BlogCategoryList activeCategory="Column" />
+      <BlogList contents={responseBlog.contents} />
+      <div class="blog-pagination">
+        <Pagination currentPage={page.currentPage} lastPage={page.lastPage} category="Column" />
+      </div>
+    </div>
+  </main>
+</Layout>

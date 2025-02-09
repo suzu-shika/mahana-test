@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+
+const noContact = true;
+const noIndex = true;
+---
+
+<!-- notFound -->
+<Layout
+  subTitle="404エラーページ"
+  ogType="website"
+  description="指定されたページは存在しません。トップページにお戻りください。"
+  {noIndex}
+  {noContact}
+>
+  <main class="notFound-main">
+    <div class="l-container">
+      <h1 class="notFound-heading u-uppercase" aria-label="お探しのページは見つかりませんでした"><span>404</span><span>Not Found</span></h1>
+      <p class="notFound-lead">お探しのページが見つかりません。</p>
+      <p class="notFound-text">一時的にアクセスできない状況にあるか、<br class="u-no-pc">移動または消去された可能性があります。</p>
+      <div class="notFound-button">
+        <Button
+          buttonUrl="/"
+          buttonText="TOPに戻る"
+          buttonAriaLabel="トップページに戻る"
+        />
+      </div><!-- /.notFound-button -->
+    </div><!-- /.l-container -->
+  </main>
+</Layout>
+
+<style lang="scss">
+  @use '../styles/_breakpoints.scss' as *;
+
+  .notFound-main {
+    padding-bottom: 212px;
+    text-align: center;
+  }
+
+  .notFound-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 0.1em;
+    margin: 140px 0 60px;
+    color: var(--color-camel);
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+  }
+
+  .notFound-lead {
+    font-size: 16px;
+  }
+
+  .notFound-text {
+    margin-top: 40px;
+  }
+
+  .notFound-button {
+    margin-top: 40px;
+  }
+
+  @include mq() {
+    .notFound-main {
+      padding-bottom: 160px;
+    }
+
+    .notFound-heading {
+      flex-direction: row;
+      justify-content: center;
+      margin: 160px 0 80px;
+      font-size: 40px;
+    }
+
+    .notFound-lead {
+      font-size: 20px;
+    }
+
+    .notFound-text {
+      margin-top: 20px;
+    }
+
+    .notFound-button {
+      margin-top: 80px;
+    }
+  }
+</style>

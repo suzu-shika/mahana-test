@@ -1,0 +1,80 @@
+<div class="c-top-kv">
+  <div class="c-top-kv-container">
+
+    <!-- フェイドインアニメーション -->
+    <div class="c-top-kv-content">
+      <h1 class="c-top-kv-logo">
+        <img src="../../public/assets/images/kv/logo-kv@2x.webp" alt="マハナ" loading="eager" decoding="async" width="360" height="244">
+      </h1><!-- /.c-top-kv-logo -->
+      <p class="c-top-kv-catch">埼玉県羽生市<br>薬剤師オーナーによる<br class="u-no-pc">腸律セラピー・アロマ・よもぎ蒸し・フェイシャルエステ</p>
+    </div><!-- /.c-top-kv-content -->
+  </div><!-- /.c-top-kv-container -->
+</div><!-- /.c-top-kv -->
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const kvContent = document.querySelector('.c-top-kv-content');
+    if (kvContent) {
+      kvContent.classList.add('is-visible');
+    }
+  });
+</script>
+
+
+<style lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+  .c-top-kv {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background-image: url(/public/assets/images/kv/bg-kv-sp@2x.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    text-align: center;
+  }
+
+  .c-top-kv-content {
+    opacity: 0;
+    transition: opacity 2.5s ease-in-out;
+
+    &.is-visible {
+      opacity: 1;
+    }
+  }
+
+  .c-top-kv-logo {
+    img {
+      width: 178px;
+    }
+  }
+
+  .c-top-kv-catch {
+    margin-top: 20px;
+    color: var(--color-camel);
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+  @include mq() {
+    .c-top-kv {
+      height: 900px;
+      padding-bottom: 20px;
+      background-image: url(/public/assets/images/kv/bg-kv-pc@2x.webp);
+    }
+
+    .c-top-kv-logo {
+      img {
+        width: 356px;
+      }
+    }
+
+    .c-top-kv-catch {
+      padding-left: 0.3em;
+      margin-top: 40px;
+      font-size: 14px;
+      letter-spacing: 0.3em;
+    }
+  }
+</style>

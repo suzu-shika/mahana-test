@@ -1,0 +1,40 @@
+---
+// microCMS呼び出し
+import { getRecommendedBlogs } from '../../library/microcms'
+
+// おすすめ記事の取得
+const recommendedBlogs = await getRecommendedBlogs();
+---
+
+<ul class="single-sidebar-pickup-list">
+  {recommendedBlogs.contents.map((content) => (
+    <li class="single-sidebar-pickup-item">
+      <a href={`/blog/${content.id}`} aria-label={`ブログ記事: ${content.title}`}>
+        <div class="c-single-card">
+          <div class="c-single-card-image">
+            <div class="c-single-card-image-inner">
+              <span class="c-single-card-number">{content.recommend_order}</span>
+              <img
+                src={content.thumbnail.url}
+                alt={content.thumbnail_alt || "ブログのサムネイル画像"}
+                loading="lazy"
+                decoding="async"
+                width="240"
+                height="156"
+              />
+            </div> <!-- /.c-single-card-image-inner -->
+          </div><!-- /.c-single-card-image -->
+          <h3 class="c-single-card-title">{content.title}</h3>
+        </div><!-- /.c-single-card -->
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style lang="scss" is:global>
+  @use '../../styles/breakpoints' as *;
+  .single-sidebar-pickup-list {
+    display: grid;
+    gap: 20px;
+  }
+</style>

@@ -1,0 +1,203 @@
+---
+// microCMS呼び出し
+import { getRecommendedBlogs } from '../../library/microcms'
+
+// おすすめ記事の取得
+const recommendedBlogs = await getRecommendedBlogs();
+
+import sanitizeHtml from 'sanitize-html';
+
+// 文字数制限関数
+function truncateText(text: string, length: number) {
+  if (!text) return "";
+  return text.length > length ? `${text.slice(0, length)}…` : text;
+}
+---
+
+<div class="c-blog-pickup">
+  <div class="splide" aria-label="おすすめ記事">
+    <div class="splide__track">
+      <div class="splide__list c-blog-pickup-list">
+        {recommendedBlogs.contents.map((content) => (
+          <article class="splide__slide c-blog-pickup-item">
+            <a href={`/blog/${content.id}`} aria-label={`ブログ記事: ${content.title}`}>
+              <div class="c-blog-pickup-description">
+                <div class="c-blog-pickup-head">
+                  <h2 class="c-blog-pickup-title">{content.title}</h2>
+                  <div class="c-blog-pickup-meta">
+                    <time datetime={content.publishedAt} class="c-blog-pickup-date">
+                      {new Date(content.publishedAt).toLocaleDateString('ja-JP', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit'
+                      })}
+                    </time>
+                    <span class="c-blog-pickup-category u-uppercase">{content.category?.join(", ") || "未分類"}</span>
+                  </div>
+                </div>
+                <div class="c-blog-pickup-excerpt" set:html={sanitizeHtml(truncateText(content.main_text, 80))}></div>
+              </div>
+              {content.thumbnail && (
+                <div class="c-blog-pickup-thumbnail">
+                  <img
+                    src={content.thumbnail.url}
+                    alt={content.thumbnail_alt || "ブログのサムネイル画像"}
+                    loading="eager"
+                    decoding="async"
+                    width="240"
+                    height="156"
+                    srcset={`${content.thumbnail.url}?w=240 240w,
+                            ${content.thumbnail.url}?w=480 480w,
+                            ${content.thumbnail.url}?w=720 720w`}
+                    sizes="(max-width: 600px) 240px, (max-width: 1024px) 480px, 720px"
+                  />
+                </div>
+              )}
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Splide
+  document.addEventListener( 'DOMContentLoaded', function() {
+    new Splide(".splide", {
+      autoplay: true,
+      type: "fade",
+      interval: 6000,
+      speed: 2000,
+      rewind: true,
+      arrows: false,
+      pagination: "splide__pagination c-blog-pickup-pagination",
+      page: "splide__pagination__page c-blog-pickup-page",
+    }).mount();
+  });
+</script>
+
+<style lang="scss" is:global>
+  @use '../../styles/breakpoints' as *;
+
+  .c-blog-pickup-item {
+    a {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 10px;
+    }
+  }
+
+  .c-blog-pickup-head {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 20px;
+    padding: 18px;
+    border: 1px solid;
+  }
+
+  .c-blog-pickup-title {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: justify;
+  }
+
+  .c-blog-pickup-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .c-blog-pickup-category {
+    display: grid;
+    place-items: center;
+    height: 20px;
+    padding: 0 22px 1px;
+    background-color: var(--color-main);
+    color: var(--color-base);
+  }
+
+  .c-blog-pickup-excerpt {
+    margin-top: 10px;
+    font-weight: 500;
+    text-align: justify;
+  }
+
+  .c-blog-pickup-thumbnail {
+    img {
+      aspect-ratio: 300 / 190;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  // スライダーのページネーション
+  .splide__pagination__page { // ページネーションのスタイル
+    width: 12px;
+    height: 12px;
+    background-color: rgb(73 69 64 / 0.2);
+    transition: all 0.5s;
+    opacity: 1;
+  }
+
+  .splide__pagination__page.is-active { // 現在表示されているページネーションのスタイル
+    background-color: rgb(73 69 64 / 0.6);
+    transform: scale(1);
+  }
+
+  .splide__pagination { // ページネーションの位置
+    bottom: -34px;
+  }
+
+  .splide__pagination li { // ページネーション間の余白
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+
+  @include mq() {
+    .c-blog-pickup-item {
+      padding: 30px 40px;
+      padding: min(30px, calc(30 var(--vw-pc))) min(40px, calc(40 var(--vw-pc)));
+      border: solid 1px;
+
+      a {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .c-blog-pickup-description {
+      flex: min(400px, calc(400 / 918 * 100%)) 0 0;
+      font-size: 12px;
+    }
+
+    .c-blog-pickup-head {
+      padding: 0;
+      border: none;
+    }
+
+    .c-blog-pickup-title {
+      font-weight: 700;
+    }
+
+    .c-blog-pickup-excerpt {
+      margin-top: 20px;
+    }
+
+    .c-blog-pickup-thumbnail {
+      flex: min(471px, calc(471 / 918 * 100%)) 0 0;
+      overflow: hidden;
+
+      img {
+        aspect-ratio: 471 / 305;
+        transition: transform 0.3s;
+
+        .c-blog-pickup-item a:hover & {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+</style>

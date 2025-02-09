@@ -1,0 +1,225 @@
+---
+import HeaderNav from "../components/HeaderNav.astro";
+import "../styles/hamburgers.css";
+const logo = "/assets/images/global/logo.svg";
+---
+
+<!-- header -->
+<header class="header">
+  <div class="header-container">
+    <!-- logo -->
+    <div class="header-logo" lang="en">
+      <a href="/">
+        <img src={logo} alt="mahana" width="170" height="28" loading="eager" decoding="async">
+      </a>
+    </div><!-- /.header-logo -->
+
+    <div class="header-link">
+      <HeaderNav />
+      <div class="header-contact">
+        <a href="/#contact" class="u-uppercase" aria-label="お問い合わせ・ご予約">Contact</a>
+      </div><!-- /.header-contact -->
+    </div><!-- /.header-link -->
+
+    <!-- hamburger icon -->
+    <div class="header-hamburger">
+      <button class="hamburger hamburger--spring js-hamburger" type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner">
+            <span class="u-sr-only">メニュー</span>
+          </span>
+        </span>
+      </button>
+    </div><!-- /.header-hamburger -->
+  </div><!-- /.header-container -->
+</header>
+
+<script>
+  // hamburger menu
+  document.addEventListener("DOMContentLoaded", function () {
+    const html = document.querySelector("html");
+    const hamburger = document.querySelector(".js-hamburger");
+    const headerNav = document.querySelector("#js-nav");
+    const headerContactLink = document.querySelector('.header-contact a');
+    const headerLogoImage = document.querySelector('.header-logo img');
+
+    function closeMenu() {
+      html.classList.remove("is-active");
+      hamburger.classList.remove("is-active");
+      headerNav.classList.remove("is-active");
+      headerContactLink.classList.remove("is-active");
+      headerLogoImage.classList.remove("is-active");
+    }
+
+    hamburger.addEventListener("click", () => {
+      html.classList.toggle("is-active");
+      hamburger.classList.toggle("is-active");
+      headerNav.classList.toggle("is-active");
+      headerContactLink.classList.toggle("is-active");
+      headerLogoImage.classList.toggle("is-active");
+    });
+
+    headerNav.addEventListener("click", closeMenu);
+    headerContactLink.addEventListener("click", closeMenu);
+  });
+</script>
+
+<style lang="scss">
+  @use '../styles/breakpoints' as *;
+
+  .header {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: var(--color-base);
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(350 var(--vw-sp));
+    height: inherit;
+    margin: auto;
+  }
+
+  .header-logo {
+    position: relative;
+    z-index: 100;
+
+    a {
+      display: block;
+      padding: 8px 0;
+    }
+
+    img {
+      width: min(170px, calc(125 var(--vw-sp)));
+      filter: invert(53%) sepia(69%) saturate(379%) hue-rotate(353deg) brightness(93%) contrast(93%);
+
+      &.is-active {
+        filter: invert(100%) sepia(0%) saturate(4431%) hue-rotate(175deg) brightness(113%) contrast(92%);
+      }
+    }
+  }
+
+  .header-contact {
+    position: relative;
+    z-index: 100;
+    margin-right: calc(39 var(--vw-sp));
+
+    a {
+      padding: 4px 12px 4px calc(12px + 0.1em);
+      border: 1px solid currentColor;
+      border-radius: 20px;
+      color: var(--color-camel);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+
+      &.is-active {
+        color: var(--color-base);
+      }
+    }
+  }
+
+  .header-hamburger {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    height: 100%;
+    // ハンバーガーアイコンのスタイルは、src/styles/hamburgers.cssで指定
+  }
+
+  // SP用 スクロール防止の設定
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  html.is-active,
+  .is-active body {
+    height: 100%;
+    overflow: hidden; // オーバーレイの高さを100vhにすると、iOSやAndroidではブラウザのアドレスバーの分だけ大きくなり、スクロールが発生する。このスクロールを防ぐための設定。
+  }
+
+  .is-active form {
+    display: none; // iOS 12.xでスクロールを禁止する設定が機能しないのを回避するための<form>要素の設定。
+  }
+
+  @include mq() {
+    .header {
+      height: 80px;
+    }
+
+    .header-container {
+      width: 100%;
+      max-width: calc(1124px + min(68px, calc(68 var(--vw-pc))) * 2);
+      padding: 0 68px;
+      padding: 0 min(68px, calc(68 var(--vw-pc)));
+    }
+
+    .header-contact {
+      margin-right: 70px;
+
+      a {
+        padding: 6px 18px 7px calc(18px + 0.1em);
+        font-size: 12px;
+      }
+    }
+  }
+
+  @include mq(lg) {
+    .header-logo {
+      a {
+        padding: 8px 12px;
+      }
+
+      img {
+        width: 170px;
+      }
+    }
+
+    .header-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-contact {
+      margin: 6px 0 0 min(17px, calc(17 var(--vw-pc)));
+
+      a {
+        position: relative;
+        padding: 8px clamp(8px, calc(12 var(--vw-pc)), 12px);
+        border: none;
+        border-radius: 0;
+        color: var(--color-main);
+        font-size: 16px;
+        font-size: clamp(14px, calc(16 var(--vw-pc)), 16px);
+        letter-spacing: normal;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 4px;
+          left: clamp(8px, calc(12 var(--vw-pc)), 12px);
+          width: 0;
+          height: 1px;
+          background-color: currentColor;
+          transition: width 0.3s;
+        }
+
+        &:hover::after,
+        &.active::after {
+          width: calc(100% - clamp(8px, calc(12 var(--vw-pc)), 12px) * 2);
+        }
+      }
+    }
+
+    .header-hamburger {
+      display: none;
+    }
+  }
+</style>

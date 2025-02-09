@@ -1,0 +1,357 @@
+---
+import SectionTitle from "../../components/Title/SectionTitle.astro";
+---
+
+<div class="c-top-about">
+  <div class="l-section">
+    <div class="c-top-about-title">
+      <SectionTitle
+        titleText="About"
+        ariaLabel="当店について"
+        className="c-section-title--white"
+      /><!-- classNameの選択肢：main, white, camel -->
+    </div><!-- /.c-top-about-title -->
+    <div class="l-section-body">
+      <div class="c-top-about-content">
+        <div class="c-top-about-wrapper c-top-about-wrapper--upper">
+          <div class="c-top-about-description c-top-about-description--upper">
+            <p class="c-top-about-text"><span aria-label="マハナ">mahana</span>とは、<br class="u-no-pc">タヒチ語で <span class="c-top-about-text-lg">“太陽”</span><br>ハワイ語で <span class="c-top-about-text-lg">“休息” “暖かい”</span></p>
+            <p class="c-top-about-text c-top-about-text--lh">いつでもここに来れば、<br>あなたの<span class="c-top-about-text-lg c-top-about-text-lg--sp-md">ありのまま</span>の<span class="c-top-about-text-lg c-top-about-text-lg--sp-md">笑顔</span>が取り戻せるような、<br>太陽のエネルギーを<span class="c-top-about-text-lg c-top-about-text-lg--sp-md">チャージ</span><br class="u-no-pc">できる場所になれますように。</p>
+            <p class="c-top-about-text  c-top-about-text--lh">埼玉県羽生市に穏やかに佇む<br class="u-no-pc">リュクスなプライベート空間で<br>日常を忘れて心が洗われる<span class="c-top-about-text-lg c-top-about-text-lg--sp-md"><br class="u-no-pc">上質な癒し</span>のひとときをお過ごしください。</p>
+          </div><!-- /.c-top-about-description -->
+          <div class="c-top-about-image c-top-about-image--upper">
+            <div class="c-top-about-image-item">
+              <picture>
+                <source media="(max-width: 767px)" srcset="../../../public/assets/images/about/pic-about-treatment-table-sp@2x.webp">
+                <source media="(min-width: 768px)" srcset="../../../public/assets/images/about/pic-about-treatment-table-pc@2x.webp">
+                <img src="../../../public/assets/images/about/pic-about-treatment-table-sp@2x.webp" alt="オレンジライトとグレーの壁の落ち着いた施術部屋" loading="lazy" decoding="async" width="130" height="150">
+                </picture>
+            </div><!-- /.c-top-about-image-item -->
+            <div class="c-top-about-image-item">
+              <img src="../../../public/assets/images/about/pic-about-aroma-diffuser-sp@2x.webp" alt="" loading="lazy" decoding="async" width="130" height="150">
+            </div><!-- /.c-top-about-image-item -->
+          </div><!-- /.c-top-about-image -->
+        </div><!-- /.c-top-about-wrapper -->
+        <div class="c-top-about-wrapper c-top-about-wrapper--lower">
+          <div class="c-top-about-description c-top-about-description--lower">
+            <p class="c-top-about-text c-top-about-text--lead">「人の力になりたい。」</p>
+            <p class="c-top-about-text c-top-about-text--narrow">そんな想いから薬剤師になったものの、<br class="u-no-sp">お薬だけでは健やかな心身は手に入らないことを目の当たりにしてきました。</p>
+            <p class="c-top-about-text c-top-about-text--narrow">腸律セラピーなどの内側からのケアで、<br class="u-no-sp">根本的な体質・肌質改善をサポートします。<br>お客様が深い癒しを体験し、<br class="u-no-sp">心から笑顔になっていただけるようお手伝いできれば嬉しいです。</p>
+            <div class="c-top-about-image c-top-about-image--lower-sp">
+              <img src="../../../public/assets/images/about/pic-about-owner-sp@2x.webp" alt="腸律をするオーナー澤出由香莉" loading="lazy" decoding="async" width="140" height="150">
+              <div class="c-top-about-owner c-top-about-owner--sp">
+                <dl class="c-top-about-dl c-top-about-dl--sp">
+                  <dt class="c-top-about-position c-top-about-position--sp">サロンオーナー</dt>
+                  <dd class="c-top-about-name c-top-about-name--sp"><span>澤出 由香莉</span><span>Yukari Sawade</span></dd>
+                  <dd class="c-top-about-qualification c-top-about-qualification--sp">
+                    <span>薬剤師 /</span>
+                    <span>腸律師&reg; /</span>
+                    <span>メディカルアロマコンサルタント /</span>
+                    <span>薬膳コーディネーター</span>
+                  </dd>
+                </dl><!-- /.c-top-about-dl -->
+              </div><!-- /.c-top-about-owner -->
+            </div><!-- /.c-top-about-image -->
+          </div><!-- /.c-top-about-description -->
+
+          <div class="c-top-about-image c-top-about-image--lower-pc">
+            <picture>
+              <img src="../../../public/assets/images/about/pic-about-owner-pc@2x.webp" alt="" loading="lazy" decoding="async" width="320" height="480">
+            </picture>
+          </div><!-- /.c-top-about-image -->
+        </div><!-- /.c-top-about-wrapper -->
+        <div class="c-top-about-owner c-top-about-owner--pc">
+          <dl class="c-top-about-dl c-top-about-dl--pc">
+            <dt class="c-top-about-position c-top-about-position--pc">サロンオーナー</dt>
+            <dd class="c-top-about-name c-top-about-name--pc"><span>澤出&ensp;由香莉</span><span>Yukari Sawade</span></dd>
+            <dd class="c-top-about--qualification c-top-about-qualification--pc">
+              <span>薬剤師 /</span>
+              <span>腸律師&reg;</span><br>
+              <span>メディカルアロマコンサルタント /</span>
+              <span>薬膳コーディネーター</span>
+            </dd>
+          </dl><!-- /.c-top-about-dl -->
+        </div><!-- /.c-top-about-owner -->
+
+      </div><!-- /.c-top-about-content -->
+    </div><!-- /.l-section-body -->
+  </div><!-- /.l-section -->
+</div><!-- /.c-top-about -->
+
+<style lang="scss">
+  @use "../../styles/breakpoints" as *;
+
+  .c-top-about {
+    background-color: var(--color-main);
+    color: var(--color-base);
+  }
+
+  .c-top-about-content {
+    @include mq() {
+      max-width: calc(var(--width-content) + 80px * 2);
+      padding: 0 80px;
+      margin: auto;
+    }
+  }
+
+  .c-top-about-wrapper {
+    position: relative;
+
+    @include mq() {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
+
+    &:first-child {
+    }
+
+    &--lower {
+      margin-top: 80px;
+
+      @include mq() {
+        margin-top: 160px;
+      }
+    }
+  }
+
+  .c-top-about-description {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    margin: auto;
+
+    @include mq() {
+      margin: 0;
+    }
+
+    &--upper {
+      gap: 19px;
+      width: fit-content;
+
+      @include mq() {
+        gap: 40px;
+        gap: min(40px, calc(40 var(--vw-pc)));
+        width: calc(633 / 1000 * 100%);
+      }
+    }
+
+    &--lower {
+      width: calc(300 var(--vw-sp));
+
+      @include mq() {
+        width: calc(633 / 1000 * 100%);
+      }
+    }
+  }
+
+  .c-top-about-text {
+    font-size: min(12px, calc(12 var(--vw-sp)));
+    letter-spacing: 0.2em;
+    line-height: 2.2;
+
+    @include mq() {
+      font-size: clamp(12px, calc(14 var(--vw-pc)), 14px);
+      letter-spacing: 0.3em;
+      line-height: 2;
+    }
+
+    &--lh {
+      line-height: calc(32 / 12);
+
+      @include mq() {
+        line-height: 2.25;
+      }
+    }
+
+    &--lead {
+      padding-left: 0.3em;
+      font-size: 16px;
+      letter-spacing: 0.3em;
+      line-height: 2.5;
+      text-align: center;
+
+      @include mq() {
+        padding: 0;
+        font-size: clamp(16px, calc(20 var(--vw-pc)), 20px);
+        line-height: 2;
+        text-align: left;
+      }
+    }
+
+    &--lead + &--narrow {
+      margin-top: 252px;
+
+      @include mq() {
+        margin-top: min(40px, calc(40 var(--vw-pc)));
+      }
+    }
+
+    &--narrow {
+      letter-spacing: 0.1em;
+      line-height: calc(8 / 3);
+
+      @include mq() {
+        letter-spacing: 0.29em;
+        line-height: calc(20 / 7);
+      }
+    }
+
+    &--narrow + &--narrow {
+      @include mq() {
+        margin-top: min(40px, calc(40 var(--vw-pc)));
+      }
+    }
+  }
+
+  .c-top-about-text-lg {
+    font-size: min(16px, calc(16 var(--vw-sp)));
+
+    @include mq() {
+      font-size: clamp(16px, calc(20 var(--vw-pc)), 20px);
+    }
+
+    &--sp-md {
+      font-size: min(12px, calc(12 var(--vw-sp)));
+
+      @include mq() {
+        font-size: clamp(16px, calc(20 var(--vw-pc)), 20px);
+        letter-spacing: 0.2em;
+      }
+    }
+  }
+
+  .c-top-about-image {
+    &--upper {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 40px;
+
+      @include mq() {
+        width: calc(320 / 1000 * 100%);
+        margin: 0;
+      }
+    }
+
+    &--lower-sp {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      translate: -50%;
+      width: 300px;
+
+      @include mq() {
+        display: none;
+      }
+
+      img {
+        width: 140px;
+      }
+    }
+
+    &--lower-pc {
+      display: none;
+
+      @include mq() {
+        display: block;
+        width: calc(320 / 1000 * 100%);
+      }
+    }
+  }
+
+  .c-top-about-image-item {
+    width: min(150px, calc(130 var(--vw-sp)));
+
+    @include mq() {
+      width: 100%;
+    }
+
+    &:last-child {
+      @include mq() {
+        display: none;
+      }
+    }
+  }
+
+  .c-top-about-owner {
+    background-color: var(--color-main);
+
+    &--sp {
+      position: absolute;
+      top: 58px;
+      right: 0;
+      width: 207px;
+      height: 113px;
+      padding: 7px 0 0 7px;
+    }
+
+    &--pc {
+      display: none;
+
+      @include mq() {
+        display: block;
+        width: fit-content;
+        padding: 10px 0 0 10px;
+        margin: 20px auto 0;
+      }
+    }
+  }
+
+  .c-top-about-dl {
+    display: grid;
+    border: 1px solid var(--color-base);
+
+    &--sp {
+      gap: 9px;
+      padding: 14px 10px 13px 10px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+    }
+
+    &--pc {
+      @include mq() {
+        gap: 10px;
+        padding: 25px 26px;
+        font-size: clamp(12px, calc(14 var(--vw-pc)), 14px);
+        letter-spacing: 0.3em;
+      }
+    }
+  }
+
+  .c-top-about-position {
+    font-weight: 400;
+  }
+
+  .c-top-about-name {
+    display: flex;
+
+    &--sp {
+      align-items: flex-end;
+      gap: 10px;
+
+      span:first-child {
+        font-size: 12px;
+      }
+    }
+
+    &--pc {
+      align-items: center;
+      gap: 30px;
+
+      span:first-child {
+        @include mq() {
+          font-size: 20px;
+          font-size: clamp(16px, calc(20 var(--vw-pc)), 20px);
+        }
+      }
+    }
+  }
+
+  .c-top-about-qualification {
+    &--sp {
+      letter-spacing: normal;
+    }
+  }
+</style>

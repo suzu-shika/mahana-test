@@ -1,0 +1,361 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeadingTitle from "../components/Title/HeadingTitle.astro";
+import MenuItem from "../components/Menu/MenuItem.astro";
+
+// microCMS呼び出し
+import { getMenus, getOptions } from "../library/microcms";
+const responseMenu = await getMenus({ fields: ["id", "menu_name", "menu_time", "menu_price", "menu_lead", "menu_notes", "menu_description"] });
+const responseOption = await getOptions({ fields: ["id", "option_name", "option_time", "option_price", "option_lead", "option_notes", "option_description"] });
+
+// 並び順を逆にする
+responseMenu.contents = responseMenu.contents.reverse();
+responseOption.contents = responseOption.contents.reverse();
+
+---
+
+<!-- menu -->
+<Layout subTitle="メニュー"
+  ogType="website"
+  description="埼玉県羽生市のプライベートサロン「mahana」のメニュー一覧。腸律セラピー・オーガニックフェイシャルエステ・バザルトストーントリートメント・アロマオイルトリートメント・Hugスチーム（よもぎ蒸し）で、心身を内側から整え、極上のリラックスを体験できます。"
+>
+  <main class="menu-main">
+    <div class="menu-heading">
+      <!-- h1 -->
+      <HeadingTitle
+        titleText="Menu"
+        ariaLabel="メニュー"
+        className="c-heading-title--camel"
+      /><!-- classNameの選択肢：main, white, camel -->
+    </div><!-- /.menu-heading -->
+    <div class="menu-upper">
+      <div class="menu-upper-container l-container">
+        <p class="menu-upper-lead">mahanaでは、不調を改善したい方や本質的な変化を実感したい方のために、<br class="u-no-sp">カラダを根本から整え、揺るぎない健康美へ導くメニューをご用意しています。</p>
+        <ul class="menu-upper-list">
+          <li class="menu-upper-item">便秘やストレス、冷え、むくみ</li>
+          <li class="menu-upper-item">お肌の不調、アンチエイジング</li>
+          <li class="menu-upper-item">生理痛・更年期・婦人科系の不調</li>
+          <li class="menu-upper-item">イライラ、不安、食欲異常、メンタルの不調</li>
+          <li class="menu-upper-item">自律神経の乱れ<br class="u-no-pc">（頭痛、疲労感、不眠、動悸、めまいなど）</li>
+        </ul>
+        <p class="menu-upper-notes">そのほかお悩みや気になることなど、お気軽にご相談ください。</p>
+      </div><!-- /.menu-upper-container l-container -->
+    </div><!-- /.menu-upper -->
+    <div class="menu-lower">
+      <div class="menu-lower-container l-container">
+        <div class="menu-lower-left">
+          <!-- slider (only PC) -->
+          <div class="menu-slider">
+            <div class="splide" role="group" aria-label="">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">
+                    <img src="../../public/assets/images/menu/pic-menu-pc-01@2x.webp" alt="" loading="lazy" decoding="async" width="410" height="850">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="../../public/assets/images/menu/pic-menu-pc-02@2x.webp" alt="" loading="lazy" decoding="async" width="410" height="850">
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div><!-- /.menu-slider -->
+        </div><!-- /.menu-lower-left -->
+        <div class="menu-lower-right">
+          <!-- menu course -->
+          <div class="menu-course">
+            <div class="menu-list">
+              {responseMenu.contents.map((content) => {
+                return (
+                <MenuItem
+                  name={content.menu_name}
+                  time={content.menu_time}
+                  price={content.menu_price}
+                  lead={content.menu_lead}
+                  notes={content.menu_notes}
+                  description={content.menu_description}
+                />
+                );
+              })}
+            </div><!-- /.menu-list -->
+          </div><!-- /.menu-course -->
+          <!-- menu option -->
+          <div class="menu-option">
+            <h2 class="menu-option-title u-uppercase" aria-label="オプションメニュー">Option Menu</h2>
+            <div class="menu-list menu-list--option">
+              {responseOption.contents.map((content) => {
+                return (
+                <MenuItem
+                  name={content.option_name}
+                  time={content.option_time}
+                  price={content.option_price}
+                  lead={content.option_lead}
+                  notes={content.option_notes}
+                  description={content.option_description}
+                />
+                );
+              })}
+            </div><!-- /.menu-list -->
+          </div><!-- /.menu-option -->
+          <p class="menu-notice">メニューに迷われる方は、<br>お悩みをお伺いした上で、お時間やご予算に合わせてお選びいただくことも可能です。<br>まずはお気軽にお問い合わせください。</p>
+        </div><!-- /.menu-lower-right -->
+      </div><!-- /.menu-lower-container l-container -->
+    </div><!-- /.menu-lower -->
+    <div class="menu-images">
+      <img src="../../public/assets/images/menu/pic-menu-sp@2x.webp" alt="" loading="lazy" decoding="async" width="375" height="160">
+    </div><!-- /.menu-images -->
+  </main>
+</Layout>
+
+<script>
+  document.addEventListener( 'DOMContentLoaded', function() {
+    new Splide(".splide", {
+      autoplay: true,
+      type: "fade",
+      interval: 5000,
+      speed: 3500,
+      rewind: true,
+      pagination: false,
+      arrows: false,
+    }).mount();
+  });
+</script>
+
+<style lang="scss">
+  @use '../styles/breakpoints' as *;
+
+  .menu-main {
+
+  }
+
+  .menu-heading {
+
+  }
+
+  .c-heading-title--camel {
+
+  }
+
+  // menu-upper
+  .menu-upper {
+    text-align: justify;
+  }
+
+  .menu-upper-container {
+
+  }
+
+  .menu-upper-lead {
+
+  }
+
+  .menu-upper-list {
+    display: grid;
+    gap: 20px;
+    margin-top: 60px;
+    font-size: clamp(12.5px, calc(14 var(--vw-sp)), 14px);
+    text-align: center;
+  }
+
+  .menu-upper-item {
+    position: relative;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-camel);
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: var(--color-camel);
+    }
+
+    &::before {
+      left: -3px;
+    }
+
+    &::after {
+      right: -3px;
+    }
+  }
+
+  .menu-upper-notes {
+    margin-top: 60px;
+  }
+
+  // menu-lower
+  .menu-lower {
+    padding: 80px 0;
+    margin-top: 80px;
+    background-image: url(../../public/assets/images/menu/bg-menu-sp@2x.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .menu-lower-container {
+
+  }
+
+  .menu-lower-left {
+    display: none;
+  }
+
+  .menu-slider {
+
+  }
+
+  .menu-lower-right {
+
+  }
+
+  .menu-course {
+
+  }
+
+  .menu-list {
+    display: grid;
+    gap: 40px;
+
+    &--option {
+      margin-top: 40px;
+    }
+  }
+
+  .menu-option {
+    margin-top: 80px;
+  }
+
+  .menu-option-title {
+    padding-left: 0.1em;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  .menu-notice {
+    padding: 12px 15px;
+    border: 1px solid;
+    margin-top: 40px;
+    letter-spacing: 0.1em;
+  }
+
+  .menu-images {
+  }
+
+  @include mq() {
+    .menu-main {
+
+    }
+
+    .menu-heading {
+
+    }
+
+    // menu-upper
+    .menu-upper {
+    }
+
+    .menu-upper-container {
+
+    }
+
+    .menu-upper-lead {
+      width: fit-content;
+      margin: auto;
+    }
+
+    .menu-upper-list {
+      width: 500px;
+      margin: 80px auto 0;
+      font-size: 16px;
+    }
+
+    .menu-upper-item {
+    }
+
+    .menu-upper-notes {
+      margin-top: 80px;
+      text-align: center;
+    }
+
+    // menu-lower
+    .menu-lower {
+      max-width: 1280px;
+      padding: 0;
+      margin: 120px auto 0;
+      background-image: none;
+
+      @media screen and (min-width: 1281px) {
+        max-width: calc(1280px + 40px * 2);
+        padding: 0 40px;
+      }
+    }
+
+    .menu-lower-container {
+      display: flex;
+      max-width: none;
+      // height: 850px;
+      height: min(850px, calc(850 var(--vw-pc)));
+      padding: 0;
+      background-image: url(../../public/assets/images/menu/bg-menu-pc@2x.webp);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    .menu-lower-left {
+      display: block;
+      width: 410px;
+      flex: 0 0 min(410px, calc(410 var(--vw-pc)));
+      background-color: #fff;
+    }
+
+    .menu-slider {
+      img {
+        object-fit: cover;
+      }
+    }
+
+    .menu-lower-right {
+      // padding: 120px 139px 120px 78px;
+      padding: min(120px, calc(120 var(--vw-pc))) min(139px, calc(139 var(--vw-pc))) min(120px, calc(120 var(--vw-pc))) min(78px, calc(78 var(--vw-pc)));
+      overflow-y: scroll;
+
+    }
+
+    .menu-course {
+
+    }
+
+    .menu-list {
+      gap: 80px;
+
+      &--option {
+        margin-top: 80px;
+      }
+    }
+
+    .menu-option {
+      margin-top: 120px;
+    }
+
+    .menu-option-title {
+      padding-left: 0;
+      font-size: 32px;
+      text-align: left;
+    }
+
+    .menu-notice {
+      padding: 20px 24px;
+      margin-top: 64px;
+    }
+
+    .menu-images {
+      display: none;
+    }
+  }
+</style>

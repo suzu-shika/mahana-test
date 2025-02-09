@@ -1,0 +1,67 @@
+---
+const { currentPage, lastPage, category } = Astro.props;
+const baseUrl = category ? `/blog/category/${category}` : `/blog`; // ベースURLを条件によって変更
+---
+
+<nav class="c-pagination">
+  {currentPage > 1 && (
+    <a href={`${baseUrl}/${currentPage - 1}`} class="c-pagination-link c-pagination-link--prev" aria-label="前のページへ">PREV</a>
+  )}
+  {Array.from({ length: lastPage }, (_, i) => (
+    <a
+      href={`${baseUrl}/${i + 1}`}
+      class={`c-pagination-link ${currentPage === i + 1 ? 'active' : ''}`}
+    >
+      {i + 1}
+    </a>
+  ))}
+  {currentPage < lastPage && (
+    <a href={`${baseUrl}/${currentPage + 1}`} class="c-pagination-link c-pagination-link--next" aria-label="次のページへ">NEXT</a>
+  )}
+</nav>
+
+<style lang="scss">
+  @use "../styles/breakpoints" as *;
+
+  .c-pagination {
+    display: flex;
+    justify-content: center;
+  }
+
+  .c-pagination-link {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    color: var(--color-camel);
+    font-size: 14px;
+    text-decoration: none;
+
+    &--prev,
+    &--next {
+      width: 40px;
+    }
+
+    &.active::after {
+      content: "";
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      translate: -50%;
+      width: 10px;
+      height: 1px;
+      background-color: currentColor;
+    }
+  }
+
+  @include mq() {
+    .c-pagination-link {
+      transition: opacity 0.3s;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+</style>

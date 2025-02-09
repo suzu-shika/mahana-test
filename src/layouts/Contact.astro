@@ -1,0 +1,183 @@
+---
+import SectionTitle from "../components/Title/SectionTitle.astro";
+---
+
+<div id="contact" class="c-contact">
+  <div class="c-contact-parallax">
+    <div class="c-contact-container l-container">
+      <div class="c-contact-title">
+        <SectionTitle
+          titleText="Contact"
+          ariaLabel="お問い合わせ・ご予約"
+          className="c-section-title--white"
+        /><!-- classNameの選択肢：main, white, camel -->
+      </div><!-- /.c-contact-title -->
+      <div class="c-contact-content">
+        <p class="c-contact-text">
+          お問い合わせ・ご予約は<br /><span
+            class="c-contact-text--lg"
+            aria-label="公式ライン">公式LINE</span
+          >もしくは<br class="u-no-pc" /><span
+            class="c-contact-text--lg"
+            aria-label="インスタグラム">Instagram</span
+          >からお気軽にどうぞ
+        </p>
+        <ul class="c-contact-list">
+          <li class="c-contact-item">
+            <a
+              href="https://lin.ee/PElklbk"
+              target="_blank"
+              class="c-contact-link c-contact-link--line"
+              aria-label="公式ライン">公式LINE</a
+            >
+          </li>
+          <li class="c-contact-item">
+            <a
+              href="https://www.instagram.com/mahana_organic360?igsh=MXY1M25iMDlxeXA0cg%3D%3D&utm_source=qr"
+              target="_blank"
+              class="c-contact-link c-contact-link--instagram"
+              aria-label="インスタグラム">Instagram</a
+            >
+          </li>
+        </ul>
+      </div><!-- /.c-contact-content -->
+    </div><!-- /.c-contact-container.l-container -->
+  </div><!-- /.c-contact-parallax -->
+</div><!-- /.c-contact -->
+
+<style lang="scss">
+  @use "../styles/breakpoints" as *;
+
+  .c-contact {
+    color: var(--color-base);
+    text-align: center;
+  }
+
+  .c-contact-parallax {
+    display: flex;
+    width: 100%;
+    height: 465px;
+    background-image: url(.././../public/assets/images/contact/bg-contact-sp@2x.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right -46px center;
+
+    @media screen and (min-width: 425px) {
+      background-position: right center;
+    }
+  }
+
+  .c-contact-content {
+    margin-top: 40px;
+  }
+
+  .c-contact-text {
+    padding-left: 0.2em;
+    letter-spacing: 0.2em;
+  }
+
+  .c-contact-text--lg {
+    font-size: 16px;
+  }
+
+  .c-contact-list {
+    display: grid;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  .c-contact-item {
+    width: 220px;
+
+    a {
+      border: 1px solid currentColor;
+    }
+  }
+
+  .c-contact-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 9px;
+    font-size: 14px;
+    letter-spacing: 0.3em;
+
+    &::before {
+      content: "";
+      width: 30px;
+      height: 30px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+    }
+
+    &--line {
+      &:before {
+        background-image: url(../../public/assets/images/contact/icon-contact-line@2x.webp);
+      }
+    }
+
+    &--instagram {
+      &:before {
+        background-image: url(../../public/assets/images/contact/icon-contact-instagram@2x.webp);
+      }
+    }
+  }
+
+  @include mq() {
+    .c-contact-item {
+      a {
+        transition: border-color 0.3s, background-color 0.3s;
+      }
+
+      a:hover {
+        border-color: var(--color-main);
+        background-color: var(--color-main);
+      }
+    }
+  }
+
+  @media screen and (min-width: 1080px) {
+    .c-contact {
+    }
+
+    .c-contact-parallax {
+      width: 100%;
+      height: calc(435 / 1280 * 100vw);
+      background-image: url(.././../public/assets/images/contact/bg-contact-pc@2x.webp);
+      background-position: top -200px center;
+      background-position: top calc(-200 / 1280 * 100vw) center;
+    }
+
+    .c-contact-container {
+      max-width: calc(var(--width-content) + 40px * 2);
+      padding: 0 40px;
+    }
+
+    .c-contact-text--lg {
+      font-size: 20px;
+    }
+
+    .c-contact-list {
+      grid-template-columns: 1fr 1fr;
+      justify-content: center;
+      gap: 40px;
+      width: 480px;
+      margin: 40px auto 0;
+    }
+
+    .c-contact-item {
+      width: 220px;
+    }
+  }
+
+  @media screen and (min-width: 2001px) {
+    .c-contact {
+      max-width: calc(2000px + calc(80px * 2));
+      padding: 0 80px;
+      margin: auto;
+    }
+  }
+</style>

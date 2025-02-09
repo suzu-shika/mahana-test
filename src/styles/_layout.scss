@@ -1,0 +1,45 @@
+@use 'breakpoints' as *;
+/* -----------------------------------
+  layout
+----------------------------------- */
+
+/* layout > container
+----------------------------------- */
+.l-container {
+  width: calc(300 var(--vw-sp));
+  margin: auto;
+}
+
+@include mq() {
+  .l-container {
+    width: 100%;
+    max-width: calc(var(--width-content) + 80px * 2);
+    padding: 0 80px;
+  }
+}
+
+/* layout > section
+----------------------------------- */
+.l-section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+@include mq() {
+  .l-section {
+    padding-top: 160px;
+    padding-bottom: 160px;
+  }
+}
+
+/* layout > section-body
+----------------------------------- */
+.l-section-body {
+  margin-top: 60px;
+}
+
+@include mq() {
+  .l-section-body {
+    margin-top: 80px;
+  }
+}

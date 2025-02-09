@@ -1,0 +1,52 @@
+---
+const { titleText, ariaLabel, className } = Astro.props;
+
+// 現在のパスを取得
+const pathname = Astro.url.pathname;
+
+// `/blog/` で始まり、かつ `/blog/[blogId]` の形式（数字のみのパスを除外）を判定
+const isBlogDetailPage = pathname.startsWith('/blog/') && !pathname.slice(6).includes('/') && isNaN(Number(pathname.slice(6)));
+---
+
+{isBlogDetailPage ? (
+  <p class={`c-heading-title ${className || ''} u-uppercase`} aria-label={ariaLabel}>
+    {titleText}
+  </p>
+) : (
+  <h1 class={`c-heading-title ${className || ''} u-uppercase`} aria-label={ariaLabel}>
+    {titleText}
+  </h1>
+)}
+
+
+<style is:global lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+  .c-heading-title {
+    padding-left: 0.1em;
+    margin: 140px 0 60px;
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-align: center;
+
+    &--main {
+      color: var(--color-main);
+    }
+
+    &--white {
+      color: var(--color-white);
+    }
+
+    &--camel {
+      color: var(--color-camel);
+    }
+  }
+
+  @include mq() {
+    .c-heading-title {
+      margin: 160px 0 80px;
+      font-size: 40px;
+    }
+  }
+</style>

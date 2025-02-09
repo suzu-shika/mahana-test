@@ -1,0 +1,131 @@
+---
+import SectionTitle from "../../components/Title/SectionTitle.astro";
+import Button from "../../components/Button.astro";
+import TopMenuItem from "../../components/Menu/TopMenuItem.astro";
+
+// microCMS呼び出し
+import { getMenus, getOptions } from "../../library/microcms";
+const responseMenu = await getMenus({ fields: ["id", "menu_name", "menu_time", "menu_price", "menu_lead"] });
+const responseOption = await getOptions({ fields: ["id", "option_name", "option_time", "option_price", "option_lead"] });
+
+// 並び順を逆にする
+responseMenu.contents = responseMenu.contents.reverse();
+responseOption.contents = responseOption.contents.reverse();
+---
+
+<div class="c-top-menu">
+  <div class="l-container">
+    <div class="l-section">
+      <div class="c-top-menu-title">
+        <SectionTitle
+          titleText="Menu"
+          ariaLabel="メニュー"
+          className="c-section-title--main"
+        /><!-- classNameの選択肢：main, white, camel -->
+      </div><!-- /.c-top-menu-title -->
+      <div class="l-section-body">
+        <div class="c-top-menu-course">
+          <div class="c-top-menu-list">
+            {responseMenu.contents.map((content) => {
+              return (
+              <TopMenuItem
+                name={content.menu_name}
+                time={content.menu_time}
+                price={content.menu_price}
+                lead={content.menu_lead}
+              />
+              );
+            })}
+          </div><!-- /.c-top-menu-list -->
+        </div><!-- /.c-top-menu-course -->
+        <div class="c-top-menu-option">
+          <h3 class="c-top-menu-option-title u-uppercase" aria-label="オプションメニュー">Option Menu</h3>
+          <div class="c-top-menu-list c-top-menu-list--option">
+            {responseOption.contents.map((content) => {
+              return (
+              <TopMenuItem
+                name={content.option_name}
+                time={content.option_time}
+                price={content.option_price}
+                lead={content.option_lead}
+                headingLevel="h4"
+              />
+              );
+            })}
+          </div><!-- /.c-top-menu-list -->
+        </div><!-- /.c-top-menu-option -->
+        <div class="c-top-menu-button">
+          <Button
+            buttonUrl="/menu"
+            buttonText="READ MORE"
+            buttonAriaLabel="メニューの詳細を見る"
+          />
+        </div><!-- /.c-top-menu-button -->
+      </div><!-- /.l-section-body -->
+    </div><!-- /.l-section -->
+  </div><!-- /.l-container -->
+</div><!-- /.c-top-menu -->
+
+<style lang="scss">
+  @use "../../styles/breakpoints" as *;
+
+  .c-top-menu {
+    background-image: url(../../../public/assets/images/menu/bg-menu-top-sp@2x.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .c-top-menu-list {
+    display: grid;
+    gap: 40px;
+
+    &--option {
+      margin-top: 40px;
+    }
+  }
+
+  .c-top-menu-option {
+    margin-top: 80px;
+  }
+
+  .c-top-menu-option-title {
+    padding-left: 0.1em;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  .c-top-menu-button {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  @include mq() {
+    .c-top-menu {
+      background-image: url(../../../public/assets/images/menu/bg-menu-top-pc@2x.webp);
+    }
+
+    .c-top-menu-list {
+      width: 650px;
+      margin: auto;
+
+      &--option {
+        margin-top: 80px;
+      }
+    }
+
+    .c-top-menu-option {
+      margin-top: 120px;
+    }
+
+    .c-top-menu-option-title {
+      font-size: 32px;
+    }
+
+    .c-top-menu-button {
+      margin-top: 60px;
+    }
+  }
+</style>

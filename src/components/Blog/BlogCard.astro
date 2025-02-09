@@ -1,0 +1,148 @@
+---
+const { id, title, thumbnail, thumbnailAlt, date, category, excerpt, isIndex } = Astro.props;
+
+import { format, parseISO } from 'date-fns';
+
+// date を ISO 形式でパースし、フォーマット
+const formattedDate = date ? format(parseISO(date), 'yyyy/MM/dd') : '日付未定';
+const machineReadableDate = date ? new Date(date).toISOString() : '';
+
+// altテキストを設定（デフォルト値を指定）
+const altText = thumbnailAlt || "ブログのサムネイル画像";
+---
+
+<article class="c-blog-card">
+  <a href={`/blog/${id}`} class="c-blog-card-link" aria-label={`ブログ記事: ${title}`}>
+    <div class="c-blog-card-thumbnail">
+      <img
+        src={thumbnail}
+        srcset={`${thumbnail}?w=240 240w, ${thumbnail}?w=480 480w`}
+        sizes="(max-width: 768px) 100vw, 240px"
+        alt={altText}
+        loading="lazy"
+        decoding="async"
+        width="240"
+        height="156"
+      >
+    </div><!-- /.c-blog-card-thumbnail -->
+    <div class="c-blog-card--head">
+      {isIndex ? (
+        <h3 class="c-blog-card-title">{title}</h3>
+      ) : (
+        <h2 class="c-blog-card-title">{title}</h2>
+      )}
+      <div class="c-blog-card-meta">
+        <time datetime={machineReadableDate}>{formattedDate}</time>
+        <span class="c-blog-card-category u-uppercase">{category}</span>
+      </div><!-- /.c-blog-card-meta -->
+    </div><!-- /.c-blog-card--head -->
+    <div class="c-blog-card-excerpt" set:html={excerpt}></div>
+  </a>
+</article>
+
+<style lang="scss">
+  @use "../../styles/breakpoints" as *;
+
+  .c-blog-card {
+    display: flex;
+    padding: 0 10px;
+  }
+
+  .c-blog-card-link {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    background-color: var(--color-white);
+    width: 100%;
+    max-width: 100%;
+
+    &::before {
+      content: "";
+      // height: 96px;
+      aspect-ratio: 280 / 96;
+      background-color: var(--color-base);
+    }
+  }
+
+  .c-blog-card-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    translate: -50%;
+    width: calc(24 / 28 * 100%);
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  .c-blog-card--head {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 80px 20px 0;
+    padding: calc(80 / 280 *100%) 20px 0;
+  }
+
+  .c-blog-card-title {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .c-blog-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  .c-blog-card-category {
+    display: grid;
+    place-items: center;
+    height: 20px;
+    padding: 0 22px 1px;
+    color: var(--color-white);
+    background-color: var(--color-main);
+
+    @include mq() {
+      padding: 0 min(22px, calc(22 / 1024 * 100vw)) 1px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      padding: 0 22px 1px;
+    }
+  }
+
+  .c-blog-card-excerpt {
+    padding: 0 20px;
+    margin-top: 20px;
+    margin-bottom: auto;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  @include mq() {
+    .c-blog-card {
+      padding: 0;
+    }
+
+    .c-blog-card-link {
+
+      .c-blog-card-thumbnail {
+        overflow: hidden;
+
+        img {
+          transition: transform 0.3s;
+        }
+      }
+
+      &:hover {
+
+        img {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+</style>

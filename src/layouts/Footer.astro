@@ -1,0 +1,380 @@
+---
+// JSON
+const navJson = [
+  {
+    href: '/#concept',
+    label: 'Concept',
+    ariaLabel: 'コンセプト'
+  },
+  {
+    href: '/#about',
+    label: 'About',
+    ariaLabel: '当店について'
+  },
+  {
+    href: '/menu',
+    label: 'Menu',
+    ariaLabel: 'メニュー'
+  },
+  {
+    href: '/blog/1',
+    label: 'Blog',
+    ariaLabel: 'ブログ'
+  },
+  {
+    href: '/#access',
+    label: 'Access',
+    ariaLabel: 'アクセス'
+  },
+  {
+    href: '/#contact',
+    label: 'Contact',
+    ariaLabel: 'お問い合わせ・ご予約'
+  }
+]
+
+// Get the current path
+const currentPath = Astro.url.pathname;
+---
+
+<!-- footer -->
+<footer class="footer">
+  <div class="l-container">
+
+    <!-- footer-sp -->
+    <div class="footer-sp">
+      <div class="footer-sp-upper">
+        <div class="footer-sp-logo">
+          <img src="../../public/assets/images/global/logo-footer-sp@2x.webp" alt="mahana" loading="lazy" decoding="async" width="79" height="53">
+        </div><!-- /.footer-sp-logo -->
+        <ul class="footer-sp-nav-list">
+          {navJson.map((navJson_item) =>
+            <li class="footer-sp-nav-item u-uppercase">
+              <a href={navJson_item.href} class={currentPath === navJson_item.href ? 'active' : ''} aria-label={navJson_item.ariaLabel}>{navJson_item.label}</a>
+            </li>
+          )}
+        </ul>
+      </div><!-- /.footer-sp-upper -->
+      <div class="footer-sp-lower">
+        <div class="footer-sp-lower-left">
+          <div class="footer-sp-privacy">
+            <a href="/privacy-policy">privacy policy</a>
+          </div><!-- /.footer-sp-privacy -->
+          <div class="footer-sp-copyright">
+            <small>&copy;mahana</small>
+          </div><!-- /.footer-sp-copyright -->
+        </div><!-- /.footer-sp-lower-left -->
+        <div class="footer-sp-lower-right">
+          <ul class="footer-sp-sns-list">
+            <li class="footer-sp-sns-item">
+              <a href="https://lin.ee/PElklbk" target="_blank">
+                <img src="../../public/assets/images/global/icon-line-white@2x.webp" alt="公式ライン" loading="lazy" decoding="async" width="20" height="20">
+              </a>
+            </li>
+            <li class="footer-sp-sns-item">
+              <a href="https://www.instagram.com/mahana_organic360?igsh=MXY1M25iMDlxeXA0cg%3D%3D&utm_source=qr" target="_blank">
+                <img src="../../public/assets/images/global/icon-instagram-white@2x.webp" alt="インスタグラム" loading="lazy" decoding="async" width="20" height="20">
+              </a>
+            </li>
+          </ul>
+        </div><!-- /.footer-sp-lower-right -->
+      </div><!-- /.footer-sp-lower -->
+    </div><!-- /.footer-sp -->
+
+    <!-- footer-pc -->
+    <div class="footer-pc">
+      <div class="footer-pc-upper">
+        <div class="footer-pc-logo">
+          <img src="/assets/images/global/logo.svg" alt="mahana" loading="lazy" decoding="async" width="170" height="28">
+        </div><!-- /.footer-pc-logo -->
+        <ul class="footer-pc-nav-list">
+          {navJson.map((navJson_item) =>
+            <li class="footer-pc-nav-item u-uppercase">
+              <a href={navJson_item.href} class={currentPath === navJson_item.href ? 'active' : ''} aria-label={navJson_item.ariaLabel}>{navJson_item.label}</a>
+            </li>
+          )}
+        </ul>
+      </div><!-- /.footer-pc-upper -->
+      <div class="footer-pc-lower">
+        <div class="footer-pc-lower-left">
+          <ul class="footer-pc-sns-list">
+            <li class="footer-pc-sns-item">
+              <a href="https://lin.ee/PElklbk" target="_blank">
+                <img src="/assets/images/global/icon-line-white@2x.webp" alt="公式ライン" loading="lazy" decoding="async" width="20" height="20">
+              </a>
+            </li>
+            <li class="footer-pc-sns-item">
+              <a href="https://www.instagram.com/mahana_organic360?igsh=MXY1M25iMDlxeXA0cg%3D%3D&utm_source=qr" target="_blank">
+                <img src="/assets/images/global/icon-Instagram-white@2x.webp" alt="インスタグラム" loading="lazy" decoding="async" width="20" height="20">
+              </a>
+            </li>
+          </ul>
+          <div class="footer-pc-copyright">
+            <small>&copy;mahana</small>
+          </div><!-- /.footer-pc-copyright -->
+        </div><!-- /.footer-pc-lower-left -->
+        <div class="footer-pc-lower-right">
+          <div class="footer-pc-privacy">
+            <a href="/privacy-policy">privacy policy</a>
+          </div><!-- /.footer-pc-privacy -->
+        </div><!-- /.footer-pc-lower-right -->
+      </div><!-- /.footer-pc-lower -->
+    </div><!-- /.footer-pc -->
+  </div><!-- l-container -->
+</footer>
+
+<style lang="scss">
+  @use '../styles/breakpoints' as *;
+
+  .footer {
+    background-color: var(--color-main);
+    color: var(--color-base);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-sp {
+    width: fit-content;
+    padding: 39px 0 38px;
+    margin: auto;
+
+    @media screen and (max-width: 374px) {
+      width: auto;
+    }
+  }
+
+  .footer-pc {
+    display: none;
+  }
+
+  .footer-sp-upper {
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: 374px) {
+      justify-content: space-between;
+    }
+  }
+
+  .footer-sp-logo {
+    position: relative;
+    margin-right: calc(25 var(--vw-sp));
+
+    @media screen and (max-width: 374px) {
+      margin-right: 0;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: -5px;
+      right: calc(-26 var(--vw-sp));
+      width: 1px;
+      height: 60px;
+      background-color: currentColor;
+
+      @media screen and (max-width: 374px) {
+        display: none;
+      }
+    }
+
+    img {
+      width: 79px;
+    }
+  }
+
+  .footer-sp-nav-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3px 38px;
+    margin-left: calc(25 var(--vw-sp));
+
+    @media screen and (max-width: 374px) {
+      gap: 3px calc(20 var(--vw-sp));
+      margin-left: 0;
+    }
+
+    @media screen and (min-width: 540px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .footer-sp-nav-item {
+    a {
+      display: block;
+      padding: 2px 0;
+
+      @media screen and (min-width: 540px) {
+        padding: 4px 0;
+      }
+    }
+
+  }
+
+  .footer-sp-lower {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;
+  }
+
+  .footer-sp-privacy {
+    a {
+      display: block;
+      font-size: 10px;
+      padding: 2px 0;
+    }
+  }
+
+  .footer-sp-copyright {
+    margin-top: 3px;
+
+    small {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+    }
+  }
+
+  .footer-sp-sns-list {
+    display: flex;
+    gap: 12px;
+    margin-top: 1px;
+  }
+
+  .footer-sp-sns-item {
+    a {
+      display: block;
+      padding: 8px 4px;
+    }
+
+    img {
+      width: 20px;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    .footer-sp {
+      display: none;
+    }
+
+    .footer-pc {
+      display: block;
+      padding: 40px 0;
+    }
+
+    .footer-pc-upper {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 18px;
+      border-bottom: 1px solid currentColor;
+    }
+
+    .footer-pc-logo {
+      margin-left: 5px;
+
+      img {
+        width: 200px;
+        filter: invert(98%) sepia(0%) saturate(3847%) hue-rotate(228deg) brightness(114%) contrast(92%);
+      }
+    }
+
+    .footer-pc-nav-list {
+      position: absolute;
+      top: 0;
+      right: -8px;
+      display: flex;
+      gap: 23px;
+      gap: min(23px, calc(23 var(--vw-pc)));
+    }
+
+    .footer-pc-nav-item {
+      margin-top: 5px;
+
+      a {
+        position: relative;
+        display: block;
+        padding: 8px;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 5px;
+          left: 8px;
+          width: 0;
+          height: 1px;
+          background-color: currentColor;
+          transition: width 0.3s;
+        }
+
+        &:hover::after {
+          width: calc(100% - 8px * 2);
+        }
+      }
+    }
+
+    .footer-pc-lower {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .footer-pc-lower-left {
+      position: relative;
+    }
+
+    .footer-pc-sns-list {
+      position: absolute;
+      top: 0;
+      left: -9px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .footer-pc-sns-item {
+      a {
+        padding: 8px;
+        transition: opacity 0.3s;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+
+      img {
+        width: 20px;
+      }
+    }
+
+    .footer-pc-copyright {
+      margin: 3px 0 0 78px;
+
+      small {
+        display: block;
+        font-size: 12px;
+        letter-spacing: 0.3em;
+      }
+    }
+
+    .footer-pc-lower-right {
+      position: relative;
+    }
+
+    .footer-pc-privacy {
+      position: absolute;
+      top: -4px;
+      right: -10px;
+      width: 120px;
+
+      a {
+        display: block;
+        padding: 8px;
+        font-size: 12px;
+        transition: opacity 0.3s;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+</style>

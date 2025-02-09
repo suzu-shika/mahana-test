@@ -1,0 +1,73 @@
+---
+const { name, time, price, lead, headingLevel = 'h3' } = Astro.props;
+
+// 3桁ごとにコンマを付けるフォーマット関数
+function formatPrice(value) {
+  return new Intl.NumberFormat('ja-JP', { style: 'decimal' }).format(value);
+}
+
+// データサニタイズ
+import sanitizeHtml from 'sanitize-html';
+---
+
+<section class="c-top-menu-item">
+  <div class="c-top-menu-head">
+    {headingLevel === 'h3' && <h3 class="c-top-menu-name">{name}</h3>}
+    {headingLevel === 'h4' && <h4 class="c-top-menu-name">{name}</h4>}
+    <p class="c-top-menu-meta">
+      <span class="c-top-menu-time">{time}分</span>
+      <span class="c-top-menu-price">{formatPrice(price)}円</span>
+    </p>
+  </div>
+  <div class="c-top-menu-description">
+    <div class="c-top-menu-lead" set:html={sanitizeHtml(lead)}></div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../../styles/breakpoints" as *;
+
+  .c-top-menu-item {
+    letter-spacing: 0.2em;
+
+    &:not(:first-child) {
+      padding-top: 40px;
+      border-top: 1px solid currentColor;
+    }
+  }
+
+  .c-top-menu-head {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .c-top-menu-name {
+    font-size: 16px;
+    letter-spacing: 0.12em;
+    line-height: 1.25;
+  }
+
+  .c-top-menu-description {
+    margin-top: 10px;
+    text-align: justify;
+  }
+
+  @include mq() {
+    .c-top-menu-head {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .c-top-menu-name {
+      font-size: 20px;
+      line-height: 1.44;
+    }
+
+    .c-top-menu-description {
+      margin-top: 20px;
+    }
+  }
+</style>

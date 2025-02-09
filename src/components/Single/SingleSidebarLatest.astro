@@ -1,0 +1,26 @@
+---
+import { getLatestBlogPost } from '../../library/microcms';
+
+const latestPost = await getLatestBlogPost();
+---
+
+{latestPost ? (
+  <a href={`/blog/${latestPost.id}`}>
+    <div class="c-single-card">
+      <div class="c-single-card-image">
+        <!-- 画像を動的に変更 -->
+        <img
+          src={latestPost.thumbnail?.url}
+          alt={latestPost.thumbnail_alt || "ブログのサムネイル画像"}
+          loading="lazy"
+          decoding="async"
+          width="240"
+          height="156"
+        />
+      </div><!-- /.c-single-card-image -->
+      <h3 class="c-single-card-title">{latestPost.title}</h3>
+    </div><!-- /.c-single-card -->
+  </a>
+) : (
+  <p>最新記事はまだありません。</p>
+)}

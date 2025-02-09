@@ -1,0 +1,49 @@
+---
+import SingleSidebarCategory from './SingleSidebarCategory.astro';
+import SingleSidebarLatest from './SingleSidebarLatest.astro';
+import SingleSidebarPickup from './SingleSidebarPickup.astro';
+---
+
+<aside class="single-sidebar">
+  <!-- category -->
+  <div class="single-sidebar-category">
+    <h2 class="single-sidebar-title">カテゴリー</h2>
+    <SingleSidebarCategory />
+  </div><!-- /.single-sidebar-category -->
+
+  <!-- latest -->
+  <div class="single-sidebar-latest">
+    <h2 class="single-sidebar-title">最新記事</h2>
+    <SingleSidebarLatest />
+  </div><!-- /.single-sidebar-latest -->
+
+  <!-- pickup -->
+  <div class="single-sidebar-pickup">
+    <h2 class="single-sidebar-title" aria-label="おすすめの記事">PICK-UP！</h2>
+    <SingleSidebarPickup />
+  </div><!-- /.single-sidebar-pickup -->
+</aside>
+
+<style lang="scss" is:global>
+  @use '../../styles/breakpoints' as *;
+
+  .single-sidebar {
+    display: none;
+
+    @media screen and (min-width: 1080px) {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      flex: 0 0 240px;
+    }
+  }
+
+  .single-sidebar-title {
+    padding-bottom: 5px;
+    border-bottom: 1px solid;
+    margin-bottom: 20px;
+    color: var(--color-camel);
+    font-size: 20px;
+    letter-spacing: 0.1em;
+  }
+</style>

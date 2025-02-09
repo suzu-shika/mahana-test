@@ -1,0 +1,217 @@
+@charset "UTF-8";
+/* -----------------------------------
+  global
+----------------------------------- */
+/* global > color
+----------------------------------- */
+:root {
+  --color-main: #494540;
+  --color-base: #f8f5f1;
+  --color-white: #fff;
+  --color-camel: #c38841;
+}
+
+/* global > content-width
+----------------------------------- */
+:root {
+  --width-content: 1000px;
+  --width-content-s: 760px;
+}
+
+/* global > content-width
+----------------------------------- */
+:root {
+  --vw-sp: / 375 * 100vw;
+  --vw-pc: / 1280 * 100vw;
+}
+
+/* global > font
+----------------------------------- */
+:root {
+  --font-family-base: "Noto Serif JP", serif;
+  --font-family-handwritten: "Klee One", cursive;
+}
+
+/* -----------------------------------
+  foundation
+----------------------------------- */
+/* foundation > base
+----------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-base);
+  color: var(--color-main);
+  font-family: var(--font-family-base);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.44;
+  overflow-x: hidden;
+  height: 200vh;
+}
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+body.isScrollAllowed {
+  overflow: hidden;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+dd ul {
+  padding-left: 8px;
+  list-style: disc inside;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+/* -----------------------------------
+  utility
+----------------------------------- */
+/* screen reader only */
+.u-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+/* uppercase */
+.u-uppercase {
+  text-transform: uppercase;
+}
+
+/* lowercase */
+.u-lowercase {
+  text-transform: lowercase;
+}
+
+/* disabled link */
+.u-disabled-link {
+  pointer-events: none;
+  text-decoration: none;
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* break */
+.u-break {
+  display: inline-block;
+}
+
+/* no-sp */
+.u-no-sp {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .u-no-sp {
+    display: block;
+  }
+}
+/* no-pc */
+@media screen and (min-width: 768px) {
+  .u-no-pc {
+    display: none;
+  }
+}
+/* -----------------------------------
+  microCMSから受け取ったデータのスタイル
+----------------------------------- */
+.single-content h2, .single-content h3, .single-content h4 {
+  padding-bottom: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+.single-content h2 {
+  padding-top: 40px;
+  font-size: 16px;
+}
+.single-content h2:first-of-type {
+  padding-top: 0;
+}
+.single-content h3, .single-content h4 {
+  padding-top: 20px;
+}
+.single-content h3 {
+  font-size: 14px;
+}
+.single-content h4 {
+  font-size: 12px;
+}
+.single-content p {
+  line-height: 2;
+}
+.single-content p + p {
+  margin-top: 10px;
+}
+.single-content img {
+  margin: 40px 0 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .single-content h2 {
+    padding-top: 80px;
+    font-size: 20px;
+  }
+  .single-content h3 {
+    font-size: 16px;
+  }
+  .single-content h4 {
+    font-size: 14px;
+  }
+  .single-content p {
+    line-height: 2.8571428571;
+  }
+  .single-content p + p {
+    margin-top: 20px;
+  }
+  .single-content img {
+    margin: 40px 0 20px;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+}
+/* -----------------------------------
+  pages
+----------------------------------- */
+/* pages > blog > [page].astro
+----------------------------------- */
+.blog-container {
+  padding-bottom: 76px;
+}
+
+.blog-pagination {
+  margin-top: 36px;
+}
+
+@media screen and (min-width: 768px) {
+  .blog-container {
+    padding-bottom: 156px;
+  }
+  .blog-pagination {
+    margin-top: 76px;
+  }
+}
+/*# sourceMappingURL=style.css.map */

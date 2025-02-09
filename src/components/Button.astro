@@ -1,0 +1,76 @@
+---
+const { buttonUrl, buttonText, buttonAriaLabel } = Astro.props;
+---
+
+<div class="c-button">
+  <a href={buttonUrl} aria-label={buttonAriaLabel}>{buttonText}<span></span></a>
+</div><!-- /.c-button -->
+
+<style is:global lang="scss">
+  @use '../styles/breakpoints' as *;
+
+  .c-button {
+    margin-right: 16px;
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      color: var(--color-main);
+      font-size: 14px;
+    }
+
+    span {
+      position: relative;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        background-color: currentColor;
+      }
+
+      &::before {
+        top: 50%;
+        left: 16px;
+        transform: translateY(-50%);
+        width: 25px;
+        height: 1px;
+      }
+
+      &::after {
+        top: 50%;
+        left: 40px;
+        transform: translateY(calc(-50% - 1px));
+        width: 8px;
+        height: 4px;
+        clip-path: polygon(100% 100%, 0 0, 0 100%);
+      }
+    }
+  }
+
+  @include mq() {
+    .c-button {
+      a {
+        transition: color 0.3s;
+      }
+
+      a:hover {
+        color: var(--color-camel);
+      }
+
+      a span::before,
+      a span::after {
+        transition: translate 0.3s;
+      }
+
+      a:hover span::before,
+      a:hover span::after {
+        translate: 4px;
+      }
+    }
+  }
+</style>

@@ -1,0 +1,133 @@
+---
+import SectionTitle from "../../components/Title/SectionTitle.astro";
+import Button from "../../components/Button.astro";
+---
+
+<div class="c-top-access">
+  <div class="l-container">
+    <div class="l-section">
+      <div class="c-top-access-title">
+        <SectionTitle
+          titleText="Access"
+          ariaLabel="アクセス"
+          className="c-section-title--main"
+        /><!-- classNameの選択肢：main, white, camel -->
+      </div><!-- /.c-top-access-title -->
+      <div class="l-section-body">
+        <picture class="c-top-access-image">
+          <source media="(max-width: 767px)" srcset="../../../public/assets/images/global/pic-access-sp@2x.webp">
+          <source media="(min-width: 768px)" srcset="../../../public/assets/images/global/pic-access-pc@2x.webp">
+          <img src="../../../public/assets/images/global/pic-access-sp@2x.webp" alt="白いコンテナに木製のドア、おしゃれなガビオンのあるコンテナハウスサロン「マハナ」の外観" loading="lazy" decoding="async" width="335" height="167">
+        </picture>
+        <div class="c-top-access-wrapper">
+          <div class="c-top-access-logo">
+            <img src="../../../public/assets/images/global/logo-black@2x.webp" alt="mahana" loading="lazy" decoding="async" width="150" height="25">
+          </div><!-- /.c-top-access-logo -->
+          <div class="c-top-access-content">
+            <dl class="c-top-access-dl">
+              <dt>住所</dt>
+              <dd><span>〒348-0048</span><br><span>埼玉県羽生市下新田19-1</span><br><span>※駐車場有</span></dd>
+              <dt>営業時間</dt>
+              <dd><span>火曜日／木曜日／土曜日</span><br><span>9:30〜16:30</span></dd>
+              <dt>完全予約制</dt>
+              <dd>1日2枠（9:30〜／13:30〜）</dd>
+              <dt>お支払い方法</dt>
+              <dd>現金・クレジットカード（Visa、<br>JCB、etc.）</dd>
+            </dl>
+            <div class="c-top-access-button">
+              <Button
+                buttonUrl="#"
+                buttonText="Google Map"
+                buttonAriaLabel="グーグルマップを見る"
+              />
+            </div><!-- /.c-top-access-button -->
+          </div><!-- /.c-top-access-content -->
+        </div><!-- /.c-top-access-wrapper -->
+      </div><!-- /.l-section-body -->
+    </div><!-- /.l-section -->
+  </div><!-- /.l-container -->
+</div><!-- /.c-top-access -->
+
+<style is:global lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+  .c-top-access {
+    background-color: #ede3d5;
+  }
+
+  .c-top-access-wrapper {
+    margin: 40px auto 0;
+  }
+
+  .c-top-access-logo {
+    img {
+      width: 100px;
+    }
+  }
+
+  .c-top-access-content {
+    margin-top: 20px;
+  }
+
+  .c-top-access-dl {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    letter-spacing: 0.1em;
+
+    dt {
+      width: 98px;
+      font-weight: 400;
+    }
+  }
+
+  .c-top-access-button {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  @include mq() {
+    .c-top-access-wrapper {
+      width: 100%;
+    }
+
+    .c-top-access-logo {
+      img {
+        width: 150px;
+      }
+    }
+
+    .c-top-access-dl {
+      row-gap: 0;
+      width: 610px;
+      letter-spacing: 0.2em;
+      line-height: calc(40 / 14);
+
+      dt {
+        width: 178px;
+      }
+
+      dd {
+        display: flex;
+        gap: 1.2em;
+        width: 420px;
+
+        br {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .c-top-access-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .c-top-access-button {
+      margin: 0 16px 5px 0;
+    }
+  }
+</style>

@@ -1,0 +1,131 @@
+---
+const { name, time, price, lead, notes, description, headingLevel = 'h2' } = Astro.props;
+
+// 3桁ごとにコンマを付けるフォーマット関数
+function formatPrice(value) {
+  return new Intl.NumberFormat('ja-JP', { style: 'decimal' }).format(value);
+}
+
+// データサニタイズ
+import sanitizeHtml from 'sanitize-html';
+---
+
+<section class="c-menu-item">
+  {headingLevel === 'h2' && <h2 class="c-menu-name">{name}</h2>}
+  {headingLevel === 'h3' && <h3 class="c-menu-name">{name}</h3>}
+  <div class="c-menu-content">
+    <p class="c-menu-meta">
+      <span class="c-menu-time">{time}<span class="c-menu-meta-jp">分</span></span>
+      <span class="c-menu-price">{formatPrice(price)}<span class="c-menu-meta-jp">円</span></span>
+    </p>
+    <div class="c-menu-description">
+      <div class="c-menu-lead" set:html={sanitizeHtml(lead)}></div>
+      <p class="c-menu-notes">{notes}</p>
+      <div class="c-menu-text" set:html={sanitizeHtml(description)}></div>
+    </div><!-- /.c-menu-description -->
+  </div><!-- /.c-menu-content -->
+</section>
+
+<style lang="scss">
+  @use "../../styles/breakpoints" as *;
+
+  .c-menu-item + .c-menu-item {
+    padding-top: 40px;
+    border-top: 1px solid;
+  }
+
+  .c-menu-name {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+
+    &::before {
+      content: "";
+      width: 5px;
+      height: 20px;
+      margin-top: 2px;
+      background-color: currentColor;
+    }
+  }
+
+  .c-menu-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 5px;
+  }
+
+  .c-menu-meta {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+  }
+
+  .c-menu-meta-jp {
+    font-size: 12px;
+  }
+
+  .c-menu-lead {
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-align: justify;
+  }
+
+  .c-menu-notes {
+    margin-bottom: 16px;
+  }
+
+  .c-menu-text {
+    text-align: justify;
+  }
+
+  @include mq() {
+    .c-menu-item + .c-menu-item {
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .c-menu-name {
+      gap: 10px;
+      font-size: 24px;
+
+      &::before {
+        content: "";
+        width: 10px;
+        height: 40px;
+      }
+    }
+
+    .c-menu-content {
+      flex-direction: column-reverse;
+      margin-top: 20px;
+    }
+
+    .c-menu-meta {
+      gap: 18px;
+      font-size: 20px;
+    }
+
+    .c-menu-meta-jp {
+      font-size: 14px;
+    }
+
+    .c-menu-lead {
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: normal;
+    }
+
+    .c-menu-notes {
+      margin-bottom: 18px;
+    }
+  }
+</style>

@@ -1,0 +1,154 @@
+---
+import SectionTitle from "../../components/Title/SectionTitle.astro";
+---
+
+<div class="c-top-concept">
+  <div class="c-top-concept-container">
+    <div class="l-section">
+      <div class="c-top-concept-title">
+        <SectionTitle
+          titleText="Concept"
+          ariaLabel="コンセプト"
+          className="c-section-title--camel"
+        /><!-- classNameの選択肢：main, white, camel -->
+      </div><!-- /.c-top-concept-title -->
+      <div class="l-section-body">
+        <div class="c-top-concept-content">
+          <p class="c-top-concept-text">
+            <span>ココロとカラダが健康なら、<br>自然と<span class="c-top-concept-text-lg">笑顔</span>になる</span>
+            <span><span class="c-top-concept-text-lg">腸</span>から<span class="c-top-concept-text-lg">美</span>しく、<br>本来のあなたらしいご機嫌な毎日を</span>
+          </p><!-- /.c-top-concept-text -->
+          <div class="c-top-concept-photos">
+            <div class="c-top-concept-photo">
+              <img
+                src="../../../public/assets/images/concept/pic-concept-thumbnail01@2x.webp"
+                alt="マハナでこだわるコットン"
+                loading="lazy"
+                decoding="async"
+                width="250"
+                height="165"
+              />
+            </div><!-- /.c-top-concept-photo -->
+            <div class="c-top-concept-photo">
+              <img
+                src="../../../public/assets/images/concept/pic-concept-thumbnail02@2x.webp"
+                alt="お腹に優しく触れ、腸律している様子"
+                loading="lazy"
+                decoding="async"
+                width="250"
+                height="165"
+              />
+            </div><!-- /.c-top-concept-photo -->
+            <div class="c-top-concept-photo">
+              <img
+                src="../../../public/assets/images/concept/pic-concept-thumbnail03@2x.webp"
+                alt="お肌に優しいオーガニックコットン100%のタオル"
+                loading="lazy"
+                decoding="async"
+                width="250"
+                height="165"
+              />
+            </div><!-- /.c-top-concept-photo -->
+            <div class="c-top-concept-photo">
+              <img
+                src="../../../public/assets/images/concept/pic-concept-thumbnail04@2x.webp"
+                alt="思考や波動を変えるボタニカルエッセンス"
+                loading="lazy"
+                decoding="async"
+                width="250"
+                height="165"
+              />
+            </div><!-- /.c-top-concept-photo -->
+            <div class="c-top-concept-photo">
+              <img
+                src="../../../public/assets/images/concept/pic-concept-thumbnail05@2x.webp"
+                alt="全身をほぐして流す、バザルトストーン"
+                loading="lazy"
+                decoding="async"
+                width="250"
+                height="165"
+              />
+            </div><!-- /.c-top-concept-photo -->
+          </div><!-- /.c-top-concept-photos -->
+        </div><!-- /.c-top-concept-content -->
+      </div><!-- /.l-section-body -->
+    </div><!-- /.l-section -->
+  </div><!-- /.c-top-concept-container -->
+</div><!-- /.c-top-concept -->
+
+<style lang="scss">
+  @use "../../styles/breakpoints" as *;
+
+  .c-top-concept-content {
+    width: calc(300 var(--vw-sp));
+    margin: auto;
+  }
+
+  .c-top-concept-text {
+    display: grid;
+    gap: 20px;
+    padding-left: 0.5em;
+    font-size: 12px;
+    letter-spacing: 0.5em;
+    line-height: 2;
+    text-align: center;
+  }
+
+  .c-top-concept-text-lg {
+    color: var(--color-camel);
+    font-size: 16px;
+  }
+
+  .c-top-concept-photos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 40px;
+  }
+
+  .c-top-concept-photo {
+    &:nth-child(1) {
+      grid-area: 1 / 1 / 3 / 3;
+    }
+  }
+
+  @include mq() {
+    .c-top-concept-content {
+      width: 100%;
+      max-width: 2000px;
+    }
+
+    .c-top-concept-text {
+      gap: 20px;
+      font-size: 14px;
+
+      br {
+        display: none;
+      }
+    }
+
+    .c-top-concept-text-lg {
+      font-size: 20px;
+    }
+
+    .c-top-concept-photos {
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: initial;
+      gap: 8px;
+      margin-top: 80px;
+    }
+
+    .c-top-concept-photo {
+      &:nth-child(1) {
+        grid-area: initial;
+      }
+    }
+  }
+
+  @media screen and (min-width: 2001px) {
+    .c-top-concept-content {
+      padding: 0 40px;
+    }
+  }
+</style>

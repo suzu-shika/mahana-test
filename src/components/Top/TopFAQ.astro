@@ -1,0 +1,141 @@
+---
+import SectionTitle from "../../components/Title/SectionTitle.astro";
+---
+
+<div class="c-top-faq">
+  <div class="l-container">
+    <div class="l-section">
+      <div class="c-top-faq-title">
+        <SectionTitle
+          titleText="F.A.Q"
+          ariaLabel="よくあるご質問"
+          className="c-section-title--camel"
+        /><!-- classNameの選択肢：main, white, camel -->
+      </div><!-- /.c-top-faq-title -->
+      <div class="l-section-body">
+        <ul class="c-top-faq-list">
+          <li class="c-top-faq-item">
+            <h3 class="c-top-faq-question">腸律の施術時はどのような服装ですか？</h3>
+            <p class="c-top-faq-answer">
+              <strong class="c-top-faq-answer-strong">ご来店時の服装のまま、施術させていただきます。</strong>
+            </p>
+            <p class="c-top-faq-answer">ショーツも含めボトムスは腰骨まで下げ、トップスは助骨が見えるところまで上げていただきます。<br>もしボトムスが下げづらいものでしたら、お貸しすることも可能です。<br>肩周りもほぐしますので、トップスはブラウス等ほつれやすい服装はお控えください。</p>
+          </li>
+          <li class="c-top-faq-item">
+            <h3 class="c-top-faq-question">腸律の施術はお腹を見られてしまうのですか？</h3>
+            <p class="c-top-faq-answer">
+              <strong class="c-top-faq-answer-strong">直接お腹を見ること、触ることはありません。</strong>
+            </p>
+            <p class="c-top-faq-answer">お腹にタオルをかけ、その上から施術しますので、ご安心ください。</p>
+          </li>
+          <li class="c-top-faq-item">
+            <h3 class="c-top-faq-question">腸律の施術は痛くないですか？</h3>
+            <p class="c-top-faq-answer">
+              <strong class="c-top-faq-answer-strong">痛みはほとんどありません。</strong>
+            </p>
+            <p class="c-top-faq-answer">お腹は「揉まない」「強く押さない」「早く動かさない」ので、ゆっくりとしたリラックスできる施術となります。</p>
+          </li>
+          <li class="c-top-faq-item">
+            <h3 class="c-top-faq-question">トイレはありますか？</h3>
+            <p class="c-top-faq-answer">
+              <strong class="c-top-faq-answer-strong">トイレ付きのコンテナハウスサロンですので、ご安心ください。</strong>
+            </p>
+            <p class="c-top-faq-answer">リラックスできるこだわりのトイレ空間となってますので、ぜひトイレもご利用ください。</p>
+          </li>
+          <li class="c-top-faq-item">
+            <h3 class="c-top-faq-question">サロンへのアクセス方法を教えてください</h3>
+            <p class="c-top-faq-answer">
+              <strong class="c-top-faq-answer-strong">駐車場をご準備しておりますので、お車でお越しください。</strong>
+            </p>
+            <p class="c-top-faq-answer">電車をご利用ですと、秩父鉄道新郷駅から徒歩20分、東武線羽生駅より徒歩35分となります。</p>
+          </li>
+        </ul>
+      </div><!-- /.l-section-body -->
+    </div><!-- /.l-section -->
+  </div><!-- /.l-container -->
+</div><!-- /.c-top-faq -->
+
+<style is:global lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+  .c-top-faq-list {
+    display: grid;
+    gap: 40px;
+  }
+
+  .c-top-faq-item {
+    letter-spacing: 0.2em;
+    text-align: justify;
+
+    &:not(:last-child) {
+      padding-bottom: 40px;
+      border-bottom: 1px solid #000;
+    }
+  }
+
+  .c-top-faq-question {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 14px;
+
+    &::before {
+      content: "Q";
+      display: grid;
+      place-items: center;
+      flex: 0 0 30px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50% 50% 0 50%;
+      padding-left: 4px;
+      background-color: var(--color-camel);
+      color: var(--color-base);
+      font-weight: 600;
+    }
+  }
+
+  .c-top-faq-answer {
+    padding-left: 40px;
+
+    &:first-of-type {
+      margin-top: 16px;
+    }
+  }
+
+  .c-top-faq-answer-strong {
+    font-weight: 600;
+  }
+
+  @include mq() {
+    .c-top-faq-list {
+      display: grid;
+      gap: 40px;
+      width: 650px;
+      margin: auto;
+    }
+
+    .c-top-faq-item {
+      padding-right: 4px;
+    }
+
+    .c-top-faq-question {
+      gap: 20px;
+      font-size: 20px;
+
+      &::before {
+        flex: 0 0 50px;
+        width: 50px;
+        height: 50px;
+        padding-left: 4px;
+      }
+    }
+
+    .c-top-faq-answer {
+      padding-left: 70px;
+
+      &:first-of-type {
+        margin-top: 10px;
+      }
+    }
+  }
+</style>

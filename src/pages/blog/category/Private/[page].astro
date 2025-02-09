@@ -1,0 +1,55 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import HeadingTitle from '../../../../components/Title/HeadingTitle.astro';
+import BlogPickup from '../../../../components/Blog/BlogPickup.astro';
+import BlogCategoryList from '../../../../components/Blog/BlogCategoryList.astro';
+import BlogList from '../../../../components/Blog/BlogList.astro';
+import Pagination from '../../../../components/Pagination.astro';
+import type { GetStaticPathsOptions } from 'astro';
+
+// microCMS呼び出し
+import { getBlogs } from "../../../../library/microcms";
+
+const { page } = Astro.props;
+
+// ブログ記事の取得
+const responseBlog = await getBlogs({
+  filters: `category[contains]Private`,
+  fields: ["id", "title", "thumbnail", "thumbnail_alt", "publishedAt", "category", "main_text"],
+  limit: 9,
+  offset: (page.currentPage - 1) * 9,
+});
+
+// 動的ルートの生成
+export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
+  const blogs = await getBlogs({
+    fields: ["category"],
+    filters: `category[contains]Private`,
+    limit: 100,
+  });
+  return paginate(blogs.contents, { pageSize: 9 });
+};
+---
+
+<Layout subTitle="ブログ - オーナーの日常"
+  ogType="website"
+  description="「mahana」オーナーのプライベートな日常や想いを綴るブログ。サロンの雰囲気や施術に対する想いを身近に感じていただける内容をお届けします。"
+>
+  <main class="blog-main">
+    <div class="blog-heading">
+      <HeadingTitle
+        titleText="Private"
+        ariaLabel="オーナーの日常"
+        className="c-heading-title--camel"
+      />
+    </div>
+    <div class="blog-container l-container">
+      <BlogPickup />
+      <BlogCategoryList activeCategory="Private" />
+      <BlogList contents={responseBlog.contents} />
+      <div class="blog-pagination">
+        <Pagination currentPage={page.currentPage} lastPage={page.lastPage} category="Private" />
+      </div>
+    </div>
+  </main>
+</Layout>

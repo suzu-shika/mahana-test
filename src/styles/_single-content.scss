@@ -1,0 +1,75 @@
+@use 'breakpoints' as *;
+
+/* -----------------------------------
+  microCMSから受け取ったデータのスタイル
+----------------------------------- */
+.single-content {
+  h2, h3, h4 {
+    padding-bottom: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+  }
+
+  h2 {
+    padding-top: 40px;
+    font-size: 16px;
+
+    &:first-of-type {
+      padding-top: 0;
+    }
+  }
+
+  h3, h4 {
+    padding-top: 20px;
+  }
+
+  h3 {
+    font-size: 14px;
+  }
+
+  h4 {
+    font-size: 12px;
+  }
+
+  p {
+    line-height: 2;
+  }
+
+  p + p {
+    margin-top: 10px;
+  }
+
+  img {
+    margin: 40px 0 20px;
+  }
+}
+
+@include mq() {
+  .single-content {
+    h2 {
+      padding-top: 80px;
+      font-size: 20px;
+    }
+
+    h3 {
+      font-size: 16px;
+    }
+
+    h4 {
+      font-size: 14px;
+    }
+
+    p {
+      line-height: calc(40 / 14);
+    }
+
+    p + p {
+      margin-top: 20px;
+    }
+
+    img {
+      margin: 40px 0 20px;
+      object-fit: cover;
+    }
+  }
+}

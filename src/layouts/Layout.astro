@@ -1,0 +1,66 @@
+---
+import "../styles/style.scss";
+import Header from "./Header.astro";
+import Contact from "./Contact.astro";
+import Footer from "./Footer.astro";
+
+const { subTitle = "トップページ", ogType = "website", ogTitle = subTitle, description = "埼玉県羽生市のプライベートサロン「mahana」では、薬剤師オーナーが腸律セラピー・アロマトリートメント・よもぎ蒸し・フェイシャルエステをご提供。腸から美しく整え、心と身体のバランスを整える癒しの時間をお届けします。", ogDescription = description , noContact = false, noIndex = false } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ja" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>埼玉県羽生市の腸律セラピー・アロマ・よもぎ蒸し｜mahana｜{subTitle}</title>
+    <meta name="description" content={description}>
+
+    {Astro.url.pathname === '/' && (
+      <!-- Google Search Console -->
+      <meta name="google-site-verification" content="あなたのコード">
+    )}
+
+    { noIndex && <meta name="robots" content="noindex, nofollow"> }
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/android-chrome-256x256.png">
+
+    <!-- ogp -->
+    <meta property="og:site_name" content="埼玉県羽生市の腸律セラピー・アロマ・よもぎ蒸し｜mahana">
+    <meta property="og:url" content="https://portfolio.suzu-shika.com">
+    <meta property="og:type" content={ogType}>
+    <meta property="og:title" content={ogTitle}>
+    <meta property="og:description" content={ogDescription}>
+    <meta property="og:image" content="https://portfolio.suzu-shika.com/ogp.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content={ogDescription}>
+    <meta name="twitter:image:src" content="https://portfolio.suzu-shika.com/ogp.png">
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- splide -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+
+    <!-- destyle.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@4.0.0/destyle.min.css">
+  </head>
+
+  <body>
+    <Header />
+
+    <slot />
+
+    { !noContact && (
+      <Contact />
+    )}
+
+    <Footer />
+  </body>
+</html>

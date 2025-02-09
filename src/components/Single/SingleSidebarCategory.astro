@@ -1,0 +1,48 @@
+<ul class="single-sidebar-category-list u-uppercase">
+  <li class="single-sidebar-category-item">
+    <a href="/blog/1" aria-label="「全てのカテゴリー」一覧へ">All</a>
+  </li>
+  <li class="single-sidebar-category-item">
+    <a href="/blog/category/News/1" aria-label="「お知らせ」一覧へ">News</a>
+  </li>
+  <li class="single-sidebar-category-item">
+    <a href="/blog/category/Column/1" aria-label="「コラム」一覧へ">Column</a>
+  </li>
+  <li class="single-sidebar-category-item">
+    <a href="/blog/category/Voice/1" aria-label="「お客様の声」一覧へ">Voice</a>
+  </li>
+  <li class="single-sidebar-category-item">
+    <a href="/blog/category/Private/1" aria-label="「オーナーの日常」一覧へ">Private</a>
+  </li>
+  <li class="single-sidebar-category-item">
+    <a href="/blog/category/Others/1" aria-label="「その他の記事」一覧へ">Others</a>
+  </li>
+</ul>
+
+<style lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+  .single-sidebar-category-list {
+    display: grid;
+    grid-template-columns: repeat(2, 80px);
+    gap: 8px 20px;
+  }
+
+  .single-sidebar-category-item {
+    border: 1px solid;
+
+    a {
+      display: grid;
+      place-items: center;
+      height: 20px;
+      padding-bottom: 1px;
+      font-size: 12px;
+      transition: background-color 0.3s, color 0.3s;
+
+      &:hover {
+        background-color: var(--color-main);
+        color: var(--color-base);
+      }
+    }
+  }
+</style>

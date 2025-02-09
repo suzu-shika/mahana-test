@@ -1,0 +1,91 @@
+---
+import SectionTitle from "../../components/Title/SectionTitle.astro";
+import BlogCard from "./BlogCard.astro";
+import Button from "../../components/Button.astro";
+
+// microCMS呼び出し
+import { getBlogs } from "../../library/microcms";
+const responseBlog = await getBlogs({ fields: ["id", "title", "thumbnail", "thumbnail_alt", "publishedAt", "category", "main_text"] });
+
+// データサニタイズ
+import sanitizeHtml from 'sanitize-html';
+
+// 文字数制限関数
+function truncateText(text, length) {
+  if (!text) return ""; // textがnull/undefinedのときの対策
+  return text.length > length ? `${text.slice(0, length)}…` : text;
+}
+---
+
+<div class="c-top-blog">
+  <div class="l-container">
+    <div class="l-section">
+      <div class="c-top-blog-title">
+        <SectionTitle
+          titleText="Blog"
+          ariaLabel="ブログ"
+          className="c-section-title--camel"
+        /><!-- classNameの選択肢：main, white, camel -->
+      </div><!-- /.c-top-blog-title -->
+      <div class="l-section-body">
+        <div class="c-top-blog-list">
+          {responseBlog.contents.slice(0, 3).map((content) => {
+            return (
+            <BlogCard
+              id={content.id}
+              title={content.title}
+              thumbnail={content.thumbnail.url}
+              thumbnailAlt={content.thumbnail_alt}
+              date={content.publishedAt}
+              category={content.category}
+              excerpt={truncateText(sanitizeHtml(content.main_text), 60)}
+              isIndex={true}
+            />
+            );
+          })}
+        </div><!-- /.c-top-blog-list -->
+        <div class="c-top-blog-button">
+          <Button
+            buttonUrl="/blog/1"
+            buttonText="READ MORE"
+            buttonAriaLabel="ブログ一覧をもっと見る"
+          />
+        </div><!-- /.c-top-blog-button -->
+      </div><!-- /.l-section-body -->
+    </div><!-- /.l-section -->
+  </div><!-- /.l-container -->
+</div><!-- /.c-top-blog -->
+
+<style lang="scss">
+  @use "../../styles/breakpoints" as *;
+
+  .c-top-blog-list {
+    display: grid;
+    gap: 40px;
+  }
+
+  .c-top-blog-button {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  @include mq() {
+    .c-top-blog {
+    }
+
+    .c-top-blog-list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: calc(20 / 768 * 100vw);
+    }
+
+    .c-top-blog-button {
+      margin-top: 80px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .c-top-blog-list {
+      gap: min(80px, calc(80 var(--vw-pc)));
+    }
+  }
+</style>
