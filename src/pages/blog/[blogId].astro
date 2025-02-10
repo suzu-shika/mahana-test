@@ -49,7 +49,7 @@ const metaDescription = cleanText.length > 150 ? cleanText.substring(0, 150) + "
   <div class="single-heading">
     <HeadingTitle
       titleText="Blog"
-      ariaLabel="メニュー"
+      ariaLabel="ブログ"
       className="c-heading-title--camel"
     />
   </div>
@@ -71,7 +71,7 @@ const metaDescription = cleanText.length > 150 ? cleanText.substring(0, 150) + "
         </div>
         <div class="single-thumbnail">
           <img
-            src={blog.thumbnail.url}
+            src={`${blog.thumbnail.url}?fm=webp`}
             alt={blog.thumbnail_alt || "ブログのサムネイル画像"}
             loading="eager"
             decoding="async"
