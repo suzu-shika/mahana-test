@@ -15,7 +15,7 @@ const recommendedBlogs = await getRecommendedBlogs();
             <div class="c-single-card-image-inner">
               <span class="c-single-card-number">{content.recommend_order}</span>
               <img
-                src={content.thumbnail.url}
+                src={`${content.thumbnail.url}?fm=webp`}
                 alt={content.thumbnail_alt || "ブログのサムネイル画像"}
                 loading="lazy"
                 decoding="async"

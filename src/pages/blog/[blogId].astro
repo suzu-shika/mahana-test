@@ -99,7 +99,7 @@ const metaDescription = cleanText.length > 150 ? cleanText.substring(0, 150) + "
                 <div class="c-single-card">
                   <div class="c-single-card-image">
                     <img
-                      src={prevBlog.thumbnail?.url || "/assets/images/blog/default-thumbnail.webp"}
+                      src={prevBlog.thumbnail ? `${prevBlog.thumbnail.url}?fm=webp` : "/assets/images/blog/default-thumbnail.webp"}
                       alt={prevBlog.thumbnail_alt || "ブログのサムネイル画像"}
                       loading="lazy"
                       decoding="async"
@@ -122,7 +122,7 @@ const metaDescription = cleanText.length > 150 ? cleanText.substring(0, 150) + "
                 <div class="c-single-card">
                   <div class="c-single-card-image">
                     <img
-                      src={nextBlog.thumbnail?.url || "/assets/images/blog/default-thumbnail.webp"}
+                      src={nextBlog.thumbnail ? `${nextBlog.thumbnail.url}?fm=webp` : "/assets/images/blog/default-thumbnail.webp"}
                       alt={nextBlog.thumbnail_alt || "ブログのサムネイル画像"}
                       loading="lazy"
                       decoding="async"

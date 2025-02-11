@@ -15,8 +15,8 @@ const altText = thumbnailAlt || "ブログのサムネイル画像";
   <a href={`/blog/${id}`} class="c-blog-card-link" aria-label={`ブログ記事: ${title}`}>
     <div class="c-blog-card-thumbnail">
       <img
-        src={thumbnail}
-        srcset={`${thumbnail}?w=240 240w, ${thumbnail}?w=480 480w`}
+        src={`${thumbnail}?fm=webp`}
+        srcset={`${thumbnail}?fm=webp&w=240 240w, ${thumbnail}?fm=webp&w=480 480w`}
         sizes="(max-width: 768px) 100vw, 240px"
         alt={altText}
         loading="lazy"

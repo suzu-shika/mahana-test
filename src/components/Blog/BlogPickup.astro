@@ -40,15 +40,15 @@ function truncateText(text: string, length: number) {
               {content.thumbnail && (
                 <div class="c-blog-pickup-thumbnail">
                   <img
-                    src={content.thumbnail.url}
+                    src={`${content.thumbnail.url}?fm=webp`}
                     alt={content.thumbnail_alt || "ブログのサムネイル画像"}
                     loading="eager"
                     decoding="async"
                     width="240"
                     height="156"
-                    srcset={`${content.thumbnail.url}?w=240 240w,
-                            ${content.thumbnail.url}?w=480 480w,
-                            ${content.thumbnail.url}?w=720 720w`}
+                    srcset={`${content.thumbnail.url}?fm=webp&w=240 240w,
+                            ${content.thumbnail.url}?fm=webp&w=480 480w,
+                            ${content.thumbnail.url}?fm=webp&w=720 720w`}
                     sizes="(max-width: 600px) 240px, (max-width: 1024px) 480px, 720px"
                   />
                 </div>

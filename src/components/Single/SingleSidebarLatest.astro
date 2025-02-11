@@ -10,7 +10,7 @@ const latestPost = await getLatestBlogPost();
       <div class="c-single-card-image">
         <!-- 画像を動的に変更 -->
         <img
-          src={latestPost.thumbnail?.url}
+          src={`${latestPost.thumbnail?.url}?fm=webp`}
           alt={latestPost.thumbnail_alt || "ブログのサムネイル画像"}
           loading="lazy"
           decoding="async"
