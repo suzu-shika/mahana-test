@@ -10,7 +10,26 @@ function truncateText(text, length) {
   if (!text) return "";
   return text.length > length ? `${text.slice(0, length)}…` : text;
 }
+
+// `<p>` タグの内容のみを抽出する関数
+function extractParagraphText(html) {
+  // `<p>` タグのみ許可してサニタイズ
+  const sanitizedHtml = sanitizeHtml(html, {
+    allowedTags: ['p'],
+    allowedAttributes: {}
+  });
+
+  // `<p>` タグの中身のみを抽出
+  const matches = sanitizedHtml.match(/<p>(.*?)<\/p>/g);
+  if (!matches) return "";
+
+  // 最初の `<p>` タグのテキストを取得（タグを除去）
+  const firstParagraph = matches[0].replace(/<\/?p>/g, '');
+
+  return firstParagraph;
+}
 ---
+
 <div class="blog-list">
   {contents && contents.length > 0 ? (
     contents.map((content) => (
@@ -21,7 +40,7 @@ function truncateText(text, length) {
         thumbnailAlt={content.thumbnail_alt}
         date={content.publishedAt}
         category={content.category}
-        excerpt={truncateText(sanitizeHtml(content.main_text), 60)}
+        excerpt={truncateText(extractParagraphText(content.main_text), 60)}
       />
     ))
   ) : (

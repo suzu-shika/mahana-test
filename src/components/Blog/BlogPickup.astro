@@ -8,9 +8,27 @@ const recommendedBlogs = await getRecommendedBlogs();
 import sanitizeHtml from 'sanitize-html';
 
 // 文字数制限関数
-function truncateText(text: string, length: number) {
+function truncateText(text, length) {
   if (!text) return "";
   return text.length > length ? `${text.slice(0, length)}…` : text;
+}
+
+// `<p>` タグの内容のみを抽出する関数
+function extractParagraphText(html) {
+  // `<p>` タグのみ許可してサニタイズ
+  const sanitizedHtml = sanitizeHtml(html, {
+    allowedTags: ['p'],
+    allowedAttributes: {}
+  });
+
+  // `<p>` タグの中身のみを抽出
+  const matches = sanitizedHtml.match(/<p>(.*?)<\/p>/g);
+  if (!matches) return "";
+
+  // 最初の `<p>` タグのテキストを取得（タグを除去）
+  const firstParagraph = matches[0].replace(/<\/?p>/g, '');
+
+  return firstParagraph;
 }
 ---
 
@@ -35,7 +53,7 @@ function truncateText(text: string, length: number) {
                     <span class="c-blog-pickup-category u-uppercase">{content.category?.join(", ") || "未分類"}</span>
                   </div>
                 </div>
-                <div class="c-blog-pickup-excerpt" set:html={sanitizeHtml(truncateText(content.main_text, 80))}></div>
+                <div class="c-blog-pickup-excerpt" set:html={sanitizeHtml(truncateText(extractParagraphText(content.main_text), 80))}></div>
               </div>
               {content.thumbnail && (
                 <div class="c-blog-pickup-thumbnail">
