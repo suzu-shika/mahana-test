@@ -5,6 +5,7 @@ import BlogPickup from '../../../../components/Blog/BlogPickup.astro';
 import BlogCategoryList from '../../../../components/Blog/BlogCategoryList.astro';
 import BlogList from '../../../../components/Blog/BlogList.astro';
 import Pagination from '../../../../components/Pagination.astro';
+import Contact from '../../../../components/Contact.astro';
 import type { GetStaticPathsOptions } from 'astro';
 
 // microCMS呼び出し
@@ -52,4 +53,5 @@ export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
       </div>
     </div>
   </main>
+  <Contact />
 </Layout>

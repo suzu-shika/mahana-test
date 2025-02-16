@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import HeadingTitle from "../components/Title/HeadingTitle.astro";
 import MenuItem from "../components/Menu/MenuItem.astro";
+import Contact from "../components/Contact.astro";
 
 // microCMS呼び出し
 import { getMenus, getOptions } from "../library/microcms";
@@ -104,6 +105,7 @@ responseOption.contents = responseOption.contents.reverse();
       <img src="/assets/images/menu/pic-menu-sp@2x.webp" alt="" loading="lazy" decoding="async" width="375" height="160">
     </div><!-- /.menu-images -->
   </main>
+  <Contact />
 </Layout>
 
 <script>
@@ -248,7 +250,7 @@ responseOption.contents = responseOption.contents.reverse();
 
   @include mq() {
     .menu-main {
-
+      margin-bottom: 160px;
     }
 
     .menu-heading {
@@ -321,8 +323,8 @@ responseOption.contents = responseOption.contents.reverse();
     }
 
     .menu-lower-right {
-      // padding: 120px 139px 120px 78px;
-      padding: min(120px, calc(120 var(--vw-pc))) min(139px, calc(139 var(--vw-pc))) min(120px, calc(120 var(--vw-pc))) min(78px, calc(78 var(--vw-pc)));
+      padding: min(60px, calc(60 var(--vw-pc))) min(139px, calc(139 var(--vw-pc))) min(60px, calc(60 var(--vw-pc))) min(78px, calc(78 var(--vw-pc)));
+      margin: min(60px, calc(60 var(--vw-pc))) 0;
       overflow-y: scroll;
 
     }
