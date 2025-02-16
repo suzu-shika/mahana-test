@@ -1,8 +1,8 @@
 ---
 import "../styles/style.scss";
 import Header from "./Header.astro";
-import Contact from "./Contact.astro";
 import Footer from "./Footer.astro";
+import Contact from "../components/Contact.astro";
 
 const { subTitle = "トップページ", ogType = "website", ogTitle = subTitle, description = "埼玉県羽生市のプライベートサロン「mahana」では、薬剤師オーナーが腸律セラピー・アロマトリートメント・よもぎ蒸し・フェイシャルエステをご提供。腸から美しく整え、心と身体のバランスを整える癒しの時間をお届けします。", ogDescription = description , noContact = false, noIndex = false } = Astro.props;
 ---
@@ -58,9 +58,9 @@ const { subTitle = "トップページ", ogType = "website", ogTitle = subTitle,
 
     <slot />
 
-    { !noContact && (
+    {/* { !noContact && (
       <Contact />
-    )}
+    )} */}
 
     <Footer />
   </body>

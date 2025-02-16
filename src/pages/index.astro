@@ -7,6 +7,7 @@ import TopMenu from '../components/Menu/TopMenu.astro';
 import TopBlog from '../components/Blog/TopBlog.astro';
 import TopAccess from '../components/Top/TopAccess.astro';
 import TopFAQ from '../components/Top/TopFAQ.astro';
+import Contact from '../components/Contact.astro';
 ---
 
 <!-- top -->
@@ -22,12 +23,12 @@ import TopFAQ from '../components/Top/TopFAQ.astro';
 
   <main>
     <!-- top-concept -->
-    <section id="concept" class="top-concept">
+    <section class="top-concept">
       <TopConcept />
     </section><!-- /.top-concept -->
 
     <!-- top-about -->
-    <section id="about" class="top-about">
+    <section class="top-about">
       <TopAbout />
     </section><!-- /.top-about -->
 
@@ -42,13 +43,14 @@ import TopFAQ from '../components/Top/TopFAQ.astro';
     </section><!-- /.top-blog -->
 
     <!-- top-access -->
-    <section id="access" class="top-access">
+    <section class="top-access">
       <TopAccess />
     </section><!-- /.top-access -->
 
     <!-- top-faq -->
-    <section id="faq" class="top-faq">
+    <section class="top-faq">
       <TopFAQ />
     </section><!-- /.top-faq -->
+    <Contact />
   </main>
 </Layout>
