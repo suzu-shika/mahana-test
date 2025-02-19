@@ -1,9 +1,11 @@
 ---
-const { buttonUrl, buttonText, buttonAriaLabel } = Astro.props;
+const { buttonUrl, buttonText, buttonAriaLabel, buttonTarget } = Astro.props;
 ---
 
 <div class="c-button">
-  <a href={buttonUrl} aria-label={buttonAriaLabel}>{buttonText}<span></span></a>
+  <a href={buttonUrl} target={buttonTarget} rel={buttonTarget === "_blank" ? "noopener noreferrer" : undefined} aria-label={buttonAriaLabel}>
+    {buttonText}<span></span>
+  </a>
 </div><!-- /.c-button -->
 
 <style is:global lang="scss">
